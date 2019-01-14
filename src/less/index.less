@@ -1,5 +1,53 @@
 @import "reset.less";
+@import "header.less";
+@import "slider.less";
 
 body{
   background: #FAF;
+  font-family: sans-serif;
+}
+
+.container {
+    width: 1200px;
+    margin: auto;
+}
+.container:before,
+.container:after {
+    content: " ";
+    clear: both;
+    display: block;
+}
+
+.btn {
+    padding: 15px 15px;
+    background: rgba(0,0,0, 0);
+    border: 4px solid #fff;
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFF;
+}
+.arrow-down {
+    width: 35px;
+    height: 35px;
+    background: rgba(0,0,0,0);
+    border: 4px solid #900606;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.arrow-down:before,
+.arrow-down:after {
+    content: " ";
+    position: absolute;
+    top: 17px;
+    left: 4px;
+    width: 17px;
+    transform: rotate(45deg);
+    height: 3px;
+    background: #900606;
+}
+.arrow-down:after {
+    transform: rotate(135deg);
+    left: 14px;
 }
