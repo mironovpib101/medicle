@@ -12,10 +12,32 @@ header.info {
 
 .info__phone {
     font-size: 30px;
+    color: @color-red;
+    margin-top: 5px;
 }
-
+.info__phone span {
+    color: @color-darkGray;
+}
 .info__phone span {
     font-size: 19px;
+}
+.info__left-panel {
+    float: left;
+    text-align: left;
+}
+
+.info__days {
+    display: inline-block;
+    width: 48px;
+    top: -1px;
+    position: relative;
+    color: @color-red;
+    font-size: 13px;
+}
+.info__left-panel{
+    text-transform: uppercase;
+    line-height: 23px;
+    margin-left: 11px;
 }
 .head menu {
     float: right;
@@ -51,8 +73,13 @@ header.info {
     padding: 0px;
     margin: 0px 10px;
     font-weight: bold;
+    text-transform: uppercase;
 }
 .active.head__item  {
     box-shadow: inset 0px -4px 0px @color-red;
     color: @color-red;
+}
+.info__work-static {
+    color: @color-red;
+    font-weight: bold;
 }
