@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/site/styles.css" type="text/css" rel="stylesheet" />
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+</head>
+<body>
+<header class="info">
+    <div class="container">
+        <div class="info__address">
+            40 лет Победы 126.(вход с торца)
+        </div>
+        <div class="info__phone">
+            <span>тел.</span> 49-08-39, 55-55-85.
+        </div>
+    </div>
+</header>
+<div class="head">
+    <div class="container">
+        <div class="head__logo">
+            <a href="#">
+                <img src="/site/image/logo.jpg" alt="logo"/>
+            </a>
+        </div>
+        <menu>
+            <ul>
+                <li class="head__item">Что мы лечим</li>
+                <li class="head__item">Методы лечения</li>
+                <li class="head__item">Врачи</li>
+                <li class="head__item">О нас</li>
+                <li class="head__item active">Цены</li>
+                <li class="head__item">Контакты</li>
+            </ul>
+        </menu>
+    </div>
+</div>
+<div class="content">
+    <div class="content__center">
+        <h1 class="content__title">Наши контакты</h1>
+        <div class="content__line"></div>
+        <div class="content__wrapper">
+            <div class="contacts">
+                <div id="map" style="width:730px; height:400px"></div>
+                <script type="text/javascript">
+		            var map;
+
+		            DG.then(function () {
+		            	var center = [53.518618, 49.311485];
+			            map = DG.map('map', {
+				            center: center,
+				            zoom: 16
+			            });
+			            DG.marker(center).addTo(map);
+		            });
+                </script>
+                <div class="contacts__address">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="footer__title">Давайте оставаться на связи!</div>
+    <div class="footer__line"></div>
+    <div class="footer__text">Готовы начать свой следующий проект с нами? Замечательно! Позвоните нам или отправьте нам письмо, и мы свяжемся с вами как можно скорее!</div>
+    <div class="footer__boxes">
+        <div class="footer__box">
+            <img src="/site/image/phone.svg" alt="Телефон">
+            <ul>
+                <li><a href="#">8(482)49-08-39</a></li>
+                <li><a href="#">8(482)55-55-85</a></li>
+            </ul>
+        </div>
+        <div class="footer__box">
+            <img src="/site/image/email.svg" alt="email">
+            <ul>
+                <li><a href="#">mcmedica@mail.ru</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer__line"></div>
+    <div class="footer__text">А так же мы будем рады видеть вас в наших группах в соц. сетях.</div>
+    <div class="footer__boxes">
+        <div class="footer__box">
+            <a href="#">
+                <img src="/site/image/vk.svg" alt="vk">
+                <div>Вконтакте</div>
+            </a>
+        </div>
+        <div class="footer__box">
+            <a href="#">
+                <img src="/site/image/ok.svg" alt="ok">
+                <div>Одноклассники</div>
+            </a>
+        </div>
+    </div>
+</footer>
+<div class="bottom">
+    <div class="bottom__links">
+        <a href="#">Техническая поддержка</a>
+        <a href="#">MirCom 2019</a>
+    </div>
+</div>
+</body>
+</html>
