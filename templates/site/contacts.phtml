@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/data/public/site/bootstrap.min.css" type="text/css" rel="stylesheet" />
+
+    <script src="/data/public/site/jquery.min.js"></script>
+    <script src="/data/public/site/popper.min.js"></script>
+    <script src="/data/public/site/bootstrap.min.js"></script>
+
+    <link href="/data/public/site/styles.css" type="text/css" rel="stylesheet" />
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+</head>
+<body>
+    <?=$header?>
+    <section class="content section-field">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="content__center">
+                        <h1 class="content__title">Наши контакты</h1>
+                        <div class="content__line"></div>
+                        <div class="content__wrapper">
+                            <div class="contacts">
+                                <div id="map" style="width:730px; height:400px"></div>
+                                <script type="text/javascript">
+                                    var map;
+
+                                    DG.then(function () {
+                                        var center = [53.518618, 49.311485];
+                                        map = DG.map('map', {
+                                            center: center,
+                                            zoom: 16
+                                        });
+                                        DG.marker(center).addTo(map);
+                                    });
+                                </script>
+                                <div class="contacts__address">
+                                    <div class="contacts__address--title">
+                                        <h2>Наш адрес:</h2>
+                                        40 лет Победы, 126
+                                        13-й квартал, Автозаводский район, Тольятти
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <?=$footer?>
+</body>
+</html>

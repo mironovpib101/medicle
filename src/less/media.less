@@ -1,13 +1,115 @@
+@media (max-width: 1200px) {
+    .slider__cont-text {
+        margin-top: 50px;
+        width: 80%;
+    }
+    .slide .d-block.w-100 {
+        min-height: 350px;
+        max-height: 350px;
+    }
+
+}
+
 @media (min-width: 990px) {
 	.head__menu-smart {
-		display: none;
+		display: none !important;
 	}
 }
 @media (max-width: 990px) {
-	.head__menu-smart {
-		display: block;
-	}
+
 	.nav.justify-content-end {
 		display: none;
-	}
+    }
+    div#map {
+        width: auto !important;
+    }
+	.head {
+        .col-2 {
+            z-index: 10;
+        }
+        .btn-group {
+            margin-top: 25px;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-pack: end!important;
+            justify-content: flex-end!important;
+        }
+        .dropdown-menu.show {
+            left: auto !important;
+            right: 0px;
+            transform: translate3d(0px, 38px, 0px) !important;
+        }
+        .btn-danger {
+            background-color: @color-red;
+            border-color: @color-red;
+        }
+        &__menu-smart {
+            display: block;
+        }
+        .btn-group-vertical>.btn,
+        .btn-group>.btn {
+            position: relative;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+        }
+        .dropdown-item.active-page {
+            background: @color-red;
+            color: @color-white;
+        }
+        .dropdown-item {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .dropdown-item:active {
+            background-color: @color-red;
+            opacity: 0.7;
+        }
+    }
+}
+
+@media (max-width: 770px) {
+    .info {
+        &__text-tip,
+        &__num-phone:last-child {
+            display: block;
+        }
+        &__num-phone:last-child {
+            margin-right: 9px;
+        }
+    }
+}
+@media (max-width: 650px) {
+    .slider__cont-text {
+        right: 20px;
+    }
+}
+@media (max-width: 550px) {
+    .galleria-license__wrapper {
+        -ms-flex-pack: justify;
+        justify-content: center;
+    }
+}
+@media (max-width: 450px) {
+    .info {
+        .col-6{
+            width: 100%;
+            max-width: 100%;
+            display: block;
+            text-align: center;
+        }
+        .row {
+            display: block;
+        }
+        &__right-panel {
+            text-align: center;
+            margin-top: 15px;
+        }
+        &__num-phone {
+            display: inline-block;
+        }
+        &__num-phone:last-child {
+            margin-right: 0px;
+            margin-left: 33px
+        }
+    }
 }

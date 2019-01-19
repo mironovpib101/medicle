@@ -53,6 +53,28 @@ $app->get('/prices/', function () {
     return (new PageActions())->getHTML('prices');
 });
 
+//контакты
+$app->get('/contacts/', function () {
+    return (new PageActions())->getHTML('contacts');
+});
+
+//Методы лечения
+$app->get('/treatment/', function () {
+    return (new PageActions())->getHTML('treatment');
+});
+
+//Что мы лечим
+$app->get('/diseases/', function () {
+    return (new PageActions())->getHTML('diseases');
+});
+
+//О нас
+$app->get('/about/', function () {
+    return (new PageActions())->getHTML('about');
+});
+
+
+
 //сохранение одного пункта
 $app->post('/admin/save/{table}/', function ($table) use ($app){
     $app->getResponse()->setContentType('application/json');

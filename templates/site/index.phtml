@@ -4,73 +4,17 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="/data/public/site/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <script src="/data/public/site/jquery.min.js"></script>
+    <script src="/data/public/site/popper.min.js"></script>
+    <script src="/data/public/site/bootstrap.min.js"></script>
     <link href="/data/public/site/styles.css" type="text/css" rel="stylesheet" />
-
+    <script src="/data/public/site/popper.min.js"></script>
 </head>
 <body>
-    <header class="info grey-field">
-        <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    <div class="info__left-panel align-middle">
-                        <div class="info__work-static">
-                            Режим работы:
-                        </div>
-                        <div class="info__item">
-                            <span class="info__days">Пн-Пт:</span>
-                            <span class="info__time-work">8:00 - 18:00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="info__right-panel">
-                        <div class="info__address">
-                            40 лет Победы 126.(вход с торца)
-                        </div>
-                        <div class="info__phone">
-                            <span>тел:</span> 49-08-39, 55-55-85
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <?=$header?>
 
-    <div class="head">
-        <div class="container">
-            <div class="row">
-                <div class="col-2">
-                    <div class="head__logo">
-                        <a href="#">
-                            <img src="/data/public/site/image/logo.jpg" alt="logo"/>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-10">
-                    <ul class="nav justify-content-end">
-                        <li class="nav-link head__item head__item--active">
-                            <a href="#">Что мы лечим</a>
-                        </li>
-                        <li class="nav-link head__item"><a href="#">Методы лечения</a></li>
-                        <li class="nav-link head__item"><a href="#">Врачи</a></li>
-                        <li class="nav-link head__item"><a href="#">О нас</a></li>
-                        <li class="nav-link head__item"><a href="#">Цены</a></li>
-                        <li class="nav-link head__item"><a href="#">Контакты</a></li>
-                    </ul>
-                    <!-- <div class="dropdown head__menu-smart">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Кнопка выпадающего списка
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
-        </div>
-    </div>
+
+
 
 
 
@@ -116,40 +60,8 @@
             </a>
         </div>
     </div>
-    <!-- Перенести в лицензии -->
-    <div class="galleria-license">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h3 class="section-title">Лицензии</h3>
-                    <div class="section-line"></div>
-                    <div class="galleria-license__wrapper">
-                        <div class="galleria-license__item">
-                            <a href="#" class="galleria-license__link">
-                                <img src="/data/public/site/image/lic1.jpg" alt="img" class="galleria-license__image"/>
-                            </a>
-                        </div>
-                        <div class="galleria-license__item">
-                            <a href="#" class="galleria-license__link">
-                                <img src="/data/public/site/image/lic2.jpg" alt="img" class="galleria-license__image"/>
-                            </a>
-                        </div>
-                        <div class="galleria-license__item">
-                            <a href="#" class="galleria-license__link">
-                                <img src="/data/public/site/image/lic3.jpg" alt="img" class="galleria-license__image"/>
-                            </a>
-                        </div>
-                        <div class="galleria-license__item">
-                            <a href="#" class="galleria-license__link">
-                                <img src="/data/public/site/image/lic4.jpg" alt="img" class="galleria-license__image"/>
-                            </a>
-                        </div>
-                    </div>
-                </div>    
-            </div>
-        </div>
-    </div>
-    <div class="reviews">
+
+    <section class="reviews section-field">
         <div class="section-title">Отзывы о нас!</div>
         <div class="section-line"></div>
         <div class="container">
@@ -191,56 +103,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     <div class="arrow-down">
 
     </div>
-    <footer class="footer-site grey-field">
-        <div class="container">
-            <div class="footer">
-                <div class="section-title">Давайте оставаться на связи!</div>
-                <div class="section-line"></div>
-                <div class="footer__text">Готовы начать свой следующий проект с нами? Замечательно! Позвоните нам или отправьте нам письмо, и мы свяжемся с вами как можно скорее!</div>
-                <div class="footer__boxes">
-                    <div class="footer__box">
-                        <img src="/data/public/site/image/phone.svg" alt="Телефон">
-                        <ul>
-                            <li><a href="#">49-08-39</a></li>
-                            <li><a href="#">55-55-85</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer__box">
-                        <img src="/data/public/site/image/email.svg" alt="email">
-                        <ul>
-                            <li><a href="#">mcmedica@mail.ru</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="footer__line"></div>
-                <div class="footer__text">А так же мы будем рады видеть вас в наших группах в соц. сетях.</div>
-                <div class="footer__boxes">
-                    <div class="footer__box">
-                        <a href="#">
-                            <img src="/data/public/site/image/vk.svg" alt="vk">
-                            <div>Вконтакте</div>
-                        </a>
-                    </div>
-                    <div class="footer__box">
-                        <a href="#">
-                            <img src="/data/public/site/image/ok.svg" alt="ok">
-                            <div>Одноклассники</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bottom">
-            <div class="bottom__links">
-                <a href="#">Техническая поддержка</a>
-                <a href="#">MirCom 2019</a>
-            </div>
-        </div>
-    </footer>
+    <?=$footer?>
     <script src="/data/public/site/scripts.js"></script>
 </body>
 </html>

@@ -1,0 +1,19 @@
+<ul class='nav justify-content-end'>
+<?php
+    foreach ($pages as $page) {
+        echo "<li class='nav-link head__item".($page['active'] ? ' head__item--active' : '')."'><a href='$page[href]'>$page[label]</a></li>";
+    }
+?>
+</ul>
+<div class='btn-group head__menu-smart'>
+     <button type='button' class='btn btn-danger dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+          Меню
+     </button>
+     <div class='dropdown-menu'>
+        <?php
+            foreach ($pages as $page) {
+               echo "<a class='dropdown-item".($page['active'] ? ' active-page' : '')."' href='$page[href]'>$page[label]</a>";
+            }
+        ?>
+    </div>
+</div>
