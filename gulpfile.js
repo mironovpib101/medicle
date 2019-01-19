@@ -30,6 +30,7 @@ gulp.task('less', () => {
 gulp.task('js', function () {
     gulp.src([
         'src/js/jquery.min.js',
+        'src/bootstrap.min.js',
         'src/js/script.js',
     ])
         .pipe(concat('data/public/site/scripts.js'))

@@ -1,3 +1,5 @@
 $(document).ready(function () {
-	console.log('ready!');
+    $('#carouselSlideMedika').carousel({
+         interval: 4000
+    })
 });
