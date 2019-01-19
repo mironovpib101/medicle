@@ -21,6 +21,9 @@ class PageActions
             case 'staff':
                 $view->assign('staff', (new StaffModel())->getAll());
                 break;
+            case 'prices':
+                $view->assign('prices', (new PricesModel())->getAll());
+                break;
         }
 
         //подключаем шаблоны

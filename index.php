@@ -43,9 +43,14 @@ $app->get('/', function () {
     return (new PageActions())->getHTML('index');
 });
 
-//главная страница
+//Врачи
 $app->get('/staff/', function () {
     return (new PageActions())->getHTML('staff');
+});
+
+//прайс лист
+$app->get('/prices/', function () {
+    return (new PageActions())->getHTML('prices');
 });
 
 //сохранение одного пункта
