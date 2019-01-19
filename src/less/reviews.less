@@ -1,0 +1,62 @@
+.reviews {
+	padding: 60px 0 30px;
+
+	&__answer {
+	    display: -ms-flexbox;
+	    display: flex;
+	}
+	&__ava-views {
+	    width: 50px;
+	    height: 50px;
+	    border-radius: 50%;
+	    margin-right: 15px;
+	}
+
+	&__ava {
+	    width: 50px;
+	    height: 50px;
+	    border-radius: 50%;
+	}
+
+	&__answer {
+	    padding-bottom: 35px;
+	    max-width: 500px;
+	    margin: auto;
+	}
+
+	&__text {
+	    padding: 10px;
+	    position: relative;
+	    border: 1px solid rgba(163,173,225,.3);
+	}
+	&__answer--right-photo {
+		.reviews__ava-views {
+		    margin-right: 0px;
+		    margin-left: 15px;
+		}
+		.reviews__text:before {    
+		    right: -8px;
+		    left: auto;
+		    margin: auto;
+		    border-left: 0px;
+		    border-bottom: 0px;
+		    border-right: 1px solid rgba(164,175,221,.2);
+		    border-top: 1px solid rgba(164,175,221,.2);
+		}
+	}
+	
+	&__text:before {    
+	    width: 16px;
+	    height: 16px;
+	    content: "";
+	    position: absolute;
+	    left: -8px;
+	    top: 15px;
+	    margin: auto;
+	    border-left: 1px solid rgba(164,175,221,.2);
+	    border-bottom: 1px solid rgba(164,175,221,.2);
+	    background-color: #fff;
+	    -webkit-transform: rotate(45deg);
+	    transform: rotate(45deg);
+	}
+}

@@ -2,20 +2,50 @@
 <html lang="en">
     <head>
         <title>test</title>
+        <link href="/data/public/site/bootstrap.min.css" type="text/css" rel="stylesheet" />
+        <link href="/data/public/site/styles.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
-        <?php
-        foreach ($staff as $it) {
-            ?>
-            <div class="media" style="margin-bottom: 1em">
-                <img src="<?=$it['photo']?>" class="mr-3" alt="photo" height="300">
-                <div class="media-body">
-                    <h5 class="mt-0"><?=$it['fullname']?></h5>
-                    <?=$it['about']?>
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="content__center">
+                            <h1 class="content__title">Сотрудники</h1>
+                            <div class="content__line"></div>
+                            <div class="content__wrapper">
+                                <div class="staff">
+                                    <?php
+                                        foreach ($staff as $it) {
+                                            ?>
+                                            <div class="staff__row">
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <div class="staff__photo-wrapper">
+                                                            <img src="<?=$it['photo']?>" class="staff__photo" alt="photo" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <div class="staff__profile">
+                                                            <h3 class="staff__title">
+                                                                <?=$it['fullname']?>
+                                                            </h3>
+                                                            <div class="staff__text">
+                                                                <?=$it['about']?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <?php
-        }
-        ?>
+            <div>
+        </div>
     </body>
 </html>
