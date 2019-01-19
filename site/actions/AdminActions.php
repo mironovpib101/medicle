@@ -19,6 +19,8 @@ class AdminActions
     protected $userModel;
     protected $postsModel;
     protected $staffModel;
+    protected $sliderModel;
+    protected $emailsModel;
     protected $licensesModel;
     protected $response;
     protected $view;
@@ -33,7 +35,9 @@ class AdminActions
         $this->userModel = new UsersModel();
         $this->postsModel = new PostsModel();
         $this->licensesModel = new LicensesModel();
+        $this->sliderModel = new SliderModel();
         $this->staffModel = new StaffModel();
+        $this->emailsModel = new EmailsModel();
         //ответ системы
         $this->response = new Response();
         //шаблоны
@@ -57,6 +61,8 @@ class AdminActions
             case 'posts': return $this->postsModel->delete(['id'=>$id]);
             case 'licenses': return $this->licensesModel->delete(['id'=>$id]);
             case 'staff': return $this->staffModel->delete(['id'=>$id]);
+            case 'slides': return $this->sliderModel->delete(['id'=>$id]);
+            case 'emails': return $this->emailsModel->delete(['id'=>$id]);
             default: return false;
         }
     }
@@ -76,6 +82,8 @@ class AdminActions
             case 'posts': return $this->postsModel->update($data, ['id'=>$id]);
             case 'licenses': return $this->licensesModel->update($data, ['id'=>$id]);
             case 'staff': return $this->staffModel->update($data, ['id'=>$id]);
+            case 'slides': return $this->sliderModel->update($data, ['id'=>$id]);
+            case 'emails': return $this->emailsModel->update($data, ['id'=>$id]);
             default: return false;
         }
     }
@@ -99,6 +107,10 @@ class AdminActions
                 return $this->licensesModel->setItem($data);
             case 'staff':
                 return $this->staffModel->setItem($data);
+            case 'slides':
+                return $this->sliderModel->setItem($data);
+            case 'emails':
+                return $this->emailsModel->setItem($data);
             default: return ['table' => 'Таблица не найдена'];
         }
     }
@@ -126,6 +138,14 @@ class AdminActions
                 if(!empty($id)) $this->view->assign('data', $this->staffModel->getRow(['id'=>$id]));
                 $template = $this->view->render('/AdminPanel/forms/staff.phtml');
                 break;
+            case 'slide':
+                if(!empty($id)) $this->view->assign('data', $this->sliderModel->getRow(['id'=>$id]));
+                $template = $this->view->render('/AdminPanel/forms/slide.phtml');
+                break;
+            case 'email':
+                if(!empty($id)) $this->view->assign('data', $this->emailsModel->getRow(['id'=>$id]));
+                $template = $this->view->render('/AdminPanel/forms/email.phtml');
+                break;
         }
         return $template;
     }
@@ -143,6 +163,8 @@ class AdminActions
                 case 'posts': $content = $this->getPosts();break;
                 case 'licenses': $content = $this->getLicenses();break;
                 case 'staff': $content = $this->getStaff();break;
+                case 'slider': $content = $this->getSlides();break;
+                case 'emails': $content = $this->getEmails();break;
             }
             $this->view->assign('title', $this->title);
             $this->view->assign('menu', $this->getMenu($page));
@@ -164,6 +186,8 @@ class AdminActions
             'posts' => ['href' => "/admin/posts/", 'label' => 'Статьи', 'active' => false],
             'licenses' => ['href' => "/admin/licenses/", 'label' => 'Лицензии', 'active' => false],
             'staff' => ['href' => "/admin/staff/", 'label' => 'Сотрудники', 'active' => false],
+            'slider' => ['href' => "/admin/slider/", 'label' => 'Слайдер', 'active' => false],
+            'emails' => ['href' => "/admin/emails/", 'label' => 'E-mails', 'active' => false],
         ];
         if($pages[$currentPage]) $pages[$currentPage]['active'] = true;
         $this->view->assign('pages', $pages);
@@ -209,6 +233,28 @@ class AdminActions
     {
         $this->view->assign('staff', $this->staffModel->getAll());
         return $this->view->render('/AdminPanel/staff.phtml');
+    }
+
+    /**
+     * Получим слайды
+     * @return string
+     * @throws \Xore\ExceptionApp
+     */
+    private function getSlides(): string
+    {
+        $this->view->assign('slides', $this->sliderModel->getAll());
+        return $this->view->render('/AdminPanel/slider.phtml');
+    }
+
+    /**
+     * Получим контактные данные
+     * @return string
+     * @throws \Xore\ExceptionApp
+     */
+    private function getEmails(): string
+    {
+        $this->view->assign('emails', $this->emailsModel->getAll());
+        return $this->view->render('/AdminPanel/emails.phtml');
     }
 
     /**

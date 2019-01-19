@@ -12,6 +12,8 @@ require_once 'site/models/PostsModel.php';
 require_once 'site/models/UsersModel.php';
 require_once 'site/models/LicensesModel.php';
 require_once 'site/models/StaffModel.php';
+require_once 'site/models/SliderModel.php';
+require_once 'site/models/EmailsModel.php';
 //подключим экшены
 require_once 'site/actions/PageActions.php';
 require_once 'site/actions/AdminActions.php';
