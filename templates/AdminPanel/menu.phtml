@@ -1,0 +1,7 @@
+<div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+    <?php
+        foreach ($pages as $page){
+            echo "<a class='nav-link".($page['active'] ? ' active' : '')."' href='$page[href]' role='tab' aria-controls='v-pills-home' aria-selected='true'>$page[label]</a>";
+        }
+    ?>
+</div>

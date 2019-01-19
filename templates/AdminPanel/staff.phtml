@@ -1,0 +1,97 @@
+<h4>
+    Сотрудники
+    <button type="button" class="btn btn-primary btn-create">
+        <i class="fa fa-plus" aria-hidden="true"></i> Добавить сотрудника
+    </button>
+</h4>
+
+<div class="container">
+    <div class="row">
+        <?php
+        foreach ($staff as $it) {
+            ?>
+            <div class="media" style="margin-bottom: 1em">
+                <img src="<?=$it['photo']?>" class="mr-3" alt="photo" height="300">
+                <div class="media-body">
+                    <h5 class="mt-0"><?=$it['fullname']?></h5>
+                    <?=$it['about']?>
+                    <div>
+                        <div class="btn-group" role="group">
+                            <a href="#" class="btn btn-primary btn-edit" data-id="<?=$it['id']?>">
+                                <i class="fa fa-pencil" aria-hidden="true"></i> Редактировать
+                            </a>
+                            <a href="#" class="btn btn-danger btn-delete" data-id="<?=$it['id']?>">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i> Удалить
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+        ?>
+    </div>
+</div>
+
+<script>
+	var $body = $('body');
+
+	//добавить сотрудника
+	$body.on('click', '.btn-create', function () {
+		$.ajax({
+			url: '/admin/form/staff/',
+			type: 'GET',
+			success: function(result) {
+				if(!result.status) return alert('Ошибка');
+				var $form = $(result.data),
+					$dialog = $('#dialog');
+				$('.modal-body', $dialog).html($form);
+				$('.modal-title', $dialog).html('Добавление сотрудника');
+				$dialog.modal();
+			},
+			error: function () {
+				alert('Ошибка');
+			}
+		});
+	});
+
+	//удаление сотрудника
+	$body.on('click', '.btn-delete', function () {
+		if(confirm('Вы уверены?')){
+			var id = $(this).data('id');
+			$.ajax({
+				url: '/admin/delete/staff/'+id+'/',
+				type: 'DELETE',
+				success: function(result) {
+					alert(result.status ? 'Запись удалена' : 'Ошибка');
+					if(result.status) location.reload();
+				},
+				error: function () {
+					alert('Ошибка');
+				}
+			});
+		}
+	});
+
+	//редактирование сотрудника
+	$body.on('click', '.btn-edit', function () {
+		var id = $(this).data('id');
+		$.ajax({
+			url: '/admin/form/staff/'+id+'/',
+			type: 'GET',
+			success: function(result) {
+				if(!result.status) return alert('Ошибка');
+				var $form = $(result.data);
+				$form.attr('method', 'put');
+				$form.attr('action', '/admin/save/staff/'+id+'/');
+				var $dialog = $('#dialog');
+				$('.modal-body', $dialog).html($form);
+				$('.modal-title', $dialog).html('Редактирование сотрудника');
+				$dialog.modal();
+			},
+			error: function () {
+				alert('Ошибка');
+			}
+		});
+	});
+</script>

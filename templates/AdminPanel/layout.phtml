@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title><?=$title?></title>
+        <script src="/src/jquery.min.js" type="application/javascript"></script>
+        <script src="/src/adminPanel/scripts.js" type="application/javascript"></script>
+        <script src="/src/ckeditor5-build-classic/ckeditor.js" type="application/javascript"></script>
+        <link rel="stylesheet" href="/src/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/src/font-awesome.min.css"/>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand mr-auto mt-2 mt-lg-0" href="#">На сайт</a>
+                <a href="#" class="my-2 my-lg-0 btn my-2 my-sm-0 loginOut">Выход</a>
+            </div>
+        </nav>
+
+        <div class="modal fade" id="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-3">
+                <?=$menu?>
+            </div>
+            <div class="col-9">
+                <div class="tab-content">
+                    <?=$content?>
+                </div>
+            </div>
+        </div>
+
+        <script src="/src/popper.min.js"></script>
+        <script src="/src/bootstrap.min.js"></script>
+    </body>
+</html>

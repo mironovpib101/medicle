@@ -1,0 +1,40 @@
+<form class="ajax" method="post" action="/admin/save/posts/" autocomplete="off">
+    <div class="form-group">
+        <label for="postPreviewImage">
+            <img
+                width="100"
+                alt="preview"
+                src="<?=empty($data['preview_image']) ? '/src/adminPanel/no_image.png' : $data['preview_image']?>"
+            />
+        </label>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="postPreviewImage" accept="image/*" data-folder="posts" />
+            <input type="hidden" name="preview_image" value="<?=$data['preview_image']?>"/>
+            <label class="custom-file-label" for="postPreviewImage">Превью</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="postName">Заголовок статьи</label>
+        <input value="<?=$data['title']?>" name="title" type="text" class="form-control" id="postName" placeholder="Введите заголовок" required>
+    </div>
+    <div class="form-group">
+        <label for="postDate">Дата публикации</label>
+        <input value="<?=date("Y-m-d", strtotime($data['date']))?>" name="date" type="date" class="form-control datepicker" id="postDate" placeholder="Введите заголовок" required>
+    </div>
+    <div class="form-group">
+        <label for="postText">Текст статьи</label>
+        <textarea class="form-control editor" id="postText" name="text" ><?=$data['text']?></textarea>
+    </div>
+    <div class="form-group">
+        <label for="postPreviewText">Аннотация</label>
+        <textarea class="form-control editor" id="postPreviewText" name="preview_text" ><?=$data['preview_text']?></textarea>
+    </div>
+    <div class="form-group">
+        <label for="postStatus">Статус статьи</label>
+        <select class="form-control" id="postStatus" name="status">
+            <option <?=($data['status'] === '0' ? 'selected' : '')?> value="0">Черновик</option>
+            <option <?=($data['status'] === '1' ? 'selected' : '')?> value="1">Опубликована</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>

@@ -1,21 +1,13 @@
 {
-  "name": "medicle",
+  "name": "xore_landing",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mironovpib101/medicle.git"
-  },
-  "author": "",
+  "author": "Oleg",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mironovpib101/medicle/issues"
-  },
-  "homepage": "https://github.com/mironovpib101/medicle#readme",
   "dependencies": {
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",

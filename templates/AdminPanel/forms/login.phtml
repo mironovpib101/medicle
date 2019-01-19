@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title><?=$title?></title>
+        <script src="/src/jquery.min.js" type="application/javascript"></script>
+        <link rel="stylesheet" href="/src/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/src/adminPanel/signin.css"/>
+    </head>
+    <body class="form-signin">
+        <form method="post" class="form-signin" id="form:login" action="/admin/login/auth/">
+            <h1 class="h3 mb-3 font-weight-normal">Авторизация</h1>
+            <label for="inputEmail" class="sr-only">Логин</label>
+            <input name="login" type="text" id="inputEmail" class="form-control" placeholder="логин" required autofocus>
+            <label for="inputPassword" class="sr-only">Пароль</label>
+            <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <p class="mt-5 mb-3 text-muted">© 2019</p>
+        </form>
+        <script src="/src/popper.min.js"></script>
+        <script src="/src/bootstrap.min.js"></script>
+    </body>
+</html>

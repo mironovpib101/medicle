@@ -1,0 +1,96 @@
+<h4>
+    Лицензии
+    <button type="button" class="btn btn-primary btn-create">
+        <i class="fa fa-plus" aria-hidden="true"></i> Добавить лицензию
+    </button>
+</h4>
+
+<div class="container">
+    <div class="row">
+        <?php
+            foreach ($licenses as $it) {
+                ?>
+                    <div class="col" style="margin-bottom: 1em">
+                        <div class="card" style="width: 250px">
+                            <img src="<?=$it['scan']?>" class="card-img-top" alt="<?=$it['title']?>">
+                            <div class="card-body">
+                                <h5 class="card-title"><?=$it['title']?></h5>
+                                <div class="btn-group" role="group">
+                                    <a href="#" class="btn btn-primary btn-edit" data-id="<?=$it['id']?>">
+                                        Редактировать
+                                    </a>
+                                    <a href="#" class="btn btn-danger btn-delete" data-id="<?=$it['id']?>">
+                                        Удалить
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+            }
+        ?>
+    </div>
+</div>
+
+<script>
+	var $body = $('body');
+
+	//добавить лицензию
+	$body.on('click', '.btn-create', function () {
+		$.ajax({
+			url: '/admin/form/license/',
+			type: 'GET',
+			success: function(result) {
+				if(!result.status) return alert('Ошибка');
+				var $form = $(result.data),
+                    $dialog = $('#dialog');
+				$('.modal-body', $dialog).html($form);
+				$('.modal-title', $dialog).html('Добавление лицензии');
+				$dialog.modal();
+			},
+			error: function () {
+				alert('Ошибка');
+			}
+		});
+	});
+
+	//удаление лицензии
+	$body.on('click', '.btn-delete', function () {
+		if(confirm('Вы уверены?')){
+			var id = $(this).data('id');
+			$.ajax({
+				url: '/admin/delete/licenses/'+id+'/',
+				type: 'DELETE',
+				success: function(result) {
+					alert(result.status ? 'Запись удалена' : 'Ошибка');
+					if(result.status) location.reload();
+				},
+				error: function () {
+					alert('Ошибка');
+				}
+			});
+		}
+	});
+
+	//редактирование лицензии
+	$body.on('click', '.btn-edit', function () {
+		var id = $(this).data('id');
+		$.ajax({
+			url: '/admin/form/license/'+id+'/',
+			type: 'GET',
+			success: function(result) {
+				if(!result.status) return alert('Ошибка');
+				var $form = $(result.data);
+				$form.attr('method', 'put');
+				$form.attr('action', '/admin/save/licenses/'+id+'/');
+				var $dialog = $('#dialog');
+				$('.modal-body', $dialog).html($form);
+				$('.modal-title', $dialog).html('Редактирование лицензии');
+				$dialog.modal();
+			},
+			error: function () {
+				alert('Ошибка');
+			}
+		});
+	});
+</script>
