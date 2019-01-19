@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>test</title>
+    </head>
+    <body>
+        <?php
+        foreach ($staff as $it) {
+            ?>
+            <div class="media" style="margin-bottom: 1em">
+                <img src="<?=$it['photo']?>" class="mr-3" alt="photo" height="300">
+                <div class="media-body">
+                    <h5 class="mt-0"><?=$it['fullname']?></h5>
+                    <?=$it['about']?>
+                </div>
+            </div>
+            <?php
+        }
+        ?>
+    </body>
+</html>

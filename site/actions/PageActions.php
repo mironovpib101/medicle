@@ -13,12 +13,19 @@ class PageActions
     protected $url = '/';
     protected $title = 'Главная страница';
 
-    public function getHTML()
+    public function getHTML(String $page)
     {
-        //подключаем шаблоны
         $view = new View();
+
+        switch ($page){
+            case 'staff':
+                $view->assign('staff', (new StaffModel())->getAll());
+                break;
+        }
+
+        //подключаем шаблоны
         try {
-            return $view->render('/site/index.phtml', false);
+            return $view->render("/site/$page.phtml", false);
         } catch (\Xore\ExceptionApp $e) {
             return $e->getMessage();
         }

@@ -40,7 +40,12 @@ Email::setConfig(SMTP_EMAIL, SMTP_PORT, SMTP_HOST,SMTP_PASS);
 //главная страница
 $app->get('/', function () {
     //создаём обработчик для главной старницы
-    return (new PageActions())->getHTML();
+    return (new PageActions())->getHTML('index');
+});
+
+//главная страница
+$app->get('/staff/', function () {
+    return (new PageActions())->getHTML('staff');
 });
 
 //сохранение одного пункта
