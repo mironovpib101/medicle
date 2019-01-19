@@ -4,22 +4,22 @@
             <img
                 width="100"
                 alt="photo"
-                src="<?=empty($data['photo']) ? '/src/adminPanel/no_image.png' : $data['photo']?>"
+                src="<?=!isset($data['photo']) && empty($data['photo']) ? '/src/adminPanel/no_image.png' : $data['photo']?>"
             />
         </label>
         <div class="custom-file">
             <input type="file" class="custom-file-input" id="staffPhoto" accept="image/*" data-folder="staff" />
-            <input required type="hidden" name="photo" value="<?=$data['photo']?>"/>
+            <input required type="hidden" name="photo" value="<?=isset($data['photo']) ? $data['photo'] : ''?>"/>
             <label class="custom-file-label" for="staffPhoto">Фото сотрудника</label>
         </div>
     </div>
     <div class="form-group">
         <label for="staffFullName">ФИО</label>
-        <input value="<?=$data['fullname']?>" name="fullname" type="text" class="form-control" id="staffFullName" placeholder="Введите ФИО сотрудника" required>
+        <input value="<?=isset($data['fullname']) ? $data['fullname'] : ''?>" name="fullname" type="text" class="form-control" id="staffFullName" placeholder="Введите ФИО сотрудника" required>
     </div>
     <div class="form-group">
         <label for="aboutStaff">О сотруднике</label>
-        <input value="<?=$data['about']?>" name="about" type="text" class="form-control" id="aboutStaff" placeholder="Кратко о сотруднике" required>
+        <input value="<?=isset($data['about']) ? $data['about'] : ''?>" name="about" type="text" class="form-control" id="aboutStaff" placeholder="Кратко о сотруднике" required>
     </div>
     <button type="submit" class="btn btn-primary">Сохранить</button>
 </form>

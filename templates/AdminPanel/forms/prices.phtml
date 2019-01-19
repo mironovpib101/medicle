@@ -1,0 +1,11 @@
+<form class="ajax" method="post" action="/admin/save/prices/" autocomplete="off">
+    <div class="form-group">
+        <label for="serviceName">Название</label>
+        <input value="<?=(isset($data['name']) ? $data['name'] : '')?>" name="name" type="text" class="form-control" id="serviceName" placeholder="Введите название" required>
+    </div>
+    <div class="form-group">
+        <label for="servicePrice">Цена</label>
+        <input value="<?=(isset($data['price']) ? $data['price'] : '')?>" name="price" type="text" class="form-control" id="servicePrice" placeholder="Введите цену" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>

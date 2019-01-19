@@ -1,0 +1,99 @@
+<h4>
+    Прайс
+    <button type="button" class="btn btn-primary btn-create">
+        <i class="fa fa-plus" aria-hidden="true"></i> Добавить запись
+    </button>
+</h4>
+
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Название</th>
+        <th scope="col">Цена</th>
+        <th scope="col">Опции</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($prices as $item) {?>
+        <tr>
+            <td><?=$item['id']?></td>
+            <td><?=$item['name']?></td>
+            <td><?=$item['price']?></td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" class="btn btn-info btn-edit" title="Редактировать" data-id="<?=$item['id']?>">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-delete" title="Удалить" data-id="<?=$item['id']?>">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    <?php } ?>
+    </tbody>
+</table>
+
+<script>
+	var $body = $('body');
+
+	//удаление записи
+	$body.on('click', '.btn-delete', function () {
+		if(confirm('Вы уверены?')){
+			var id = $(this).data('id');
+			$.ajax({
+				url: '/admin/delete/prices/'+id+'/',
+				type: 'DELETE',
+				success: function(result) {
+					alert(result.status ? 'Запись удалена' : 'Ошибка');
+					if(result.status) location.reload();
+				},
+				error: function () {
+					alert('Ошибка');
+				}
+			});
+		}
+	});
+
+	//создать запись
+	$body.on('click', '.btn-create', function () {
+		$.ajax({
+			url: '/admin/form/prices/',
+			type: 'GET',
+			success: function(result) {
+				if(!result.status) return alert('Ошибка');
+				var $form = $(result.data);
+				var $dialog = $('#dialog');
+				$('.modal-body', $dialog).html($form);
+				$('.modal-title', $dialog).html('Создание записи');
+				$dialog.modal();
+			},
+			error: function () {
+				alert('Ошибка');
+			}
+		});
+	});
+
+	//редактирование записи
+	$body.on('click', '.btn-edit', function () {
+		var id = $(this).data('id');
+		$.ajax({
+			url: '/admin/form/prices/'+id+'/',
+			type: 'GET',
+			success: function(result) {
+				if(!result.status) return alert('Ошибка');
+				var $form = $(result.data);
+				$form.attr('method', 'put');
+				$form.attr('action', '/admin/save/prices/'+id+'/');
+				var $dialog = $('#dialog');
+				$('.modal-body', $dialog).html($form);
+				$('.modal-title', $dialog).html('Редактирование записи');
+				$dialog.modal();
+			},
+			error: function () {
+				alert('Ошибка');
+			}
+		});
+	});
+</script>

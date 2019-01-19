@@ -21,6 +21,8 @@ class AdminActions
     protected $staffModel;
     protected $sliderModel;
     protected $emailsModel;
+    protected $anyModel;
+    protected $pricesModel;
     protected $licensesModel;
     protected $response;
     protected $view;
@@ -38,6 +40,8 @@ class AdminActions
         $this->sliderModel = new SliderModel();
         $this->staffModel = new StaffModel();
         $this->emailsModel = new EmailsModel();
+        $this->anyModel = new AnyModel();
+        $this->pricesModel = new PricesModel();
         //ответ системы
         $this->response = new Response();
         //шаблоны
@@ -56,15 +60,7 @@ class AdminActions
     public function removeElement(String $table, int $id): bool
     {
         if(empty($table) || empty($id)) return false;
-
-        switch ($table){
-            case 'posts': return $this->postsModel->delete(['id'=>$id]);
-            case 'licenses': return $this->licensesModel->delete(['id'=>$id]);
-            case 'staff': return $this->staffModel->delete(['id'=>$id]);
-            case 'slides': return $this->sliderModel->delete(['id'=>$id]);
-            case 'emails': return $this->emailsModel->delete(['id'=>$id]);
-            default: return false;
-        }
+        return $this->anyModel->setTable($table)->delete(['id'=>$id]);
     }
 
     /**
@@ -77,15 +73,7 @@ class AdminActions
     public function updateElement(String $table, int $id, array $data): bool
     {
         if(empty($table) || empty($id)) return false;
-
-        switch ($table){
-            case 'posts': return $this->postsModel->update($data, ['id'=>$id]);
-            case 'licenses': return $this->licensesModel->update($data, ['id'=>$id]);
-            case 'staff': return $this->staffModel->update($data, ['id'=>$id]);
-            case 'slides': return $this->sliderModel->update($data, ['id'=>$id]);
-            case 'emails': return $this->emailsModel->update($data, ['id'=>$id]);
-            default: return false;
-        }
+        return $this->anyModel->setTable($table)->update($data, ['id'=>$id]);
     }
 
     /**
@@ -111,6 +99,8 @@ class AdminActions
                 return $this->sliderModel->setItem($data);
             case 'emails':
                 return $this->emailsModel->setItem($data);
+            case 'prices':
+                return $this->pricesModel->setItem($data);
             default: return ['table' => 'Таблица не найдена'];
         }
     }
@@ -124,30 +114,12 @@ class AdminActions
      */
     public function getForm(String $table, int $id = null): String
     {
-        $template = '';
-        switch ($table){
-            case 'posts':
-                if(!empty($id)) $this->view->assign('data', $this->postsModel->getRow(['id'=>$id]));
-                $template = $this->view->render('/AdminPanel/forms/post.phtml');
-                break;
-            case 'license':
-                if(!empty($id)) $this->view->assign('data', $this->licensesModel->getRow(['id'=>$id]));
-                $template = $this->view->render('/AdminPanel/forms/license.phtml');
-                break;
-            case 'staff':
-                if(!empty($id)) $this->view->assign('data', $this->staffModel->getRow(['id'=>$id]));
-                $template = $this->view->render('/AdminPanel/forms/staff.phtml');
-                break;
-            case 'slide':
-                if(!empty($id)) $this->view->assign('data', $this->sliderModel->getRow(['id'=>$id]));
-                $template = $this->view->render('/AdminPanel/forms/slide.phtml');
-                break;
-            case 'email':
-                if(!empty($id)) $this->view->assign('data', $this->emailsModel->getRow(['id'=>$id]));
-                $template = $this->view->render('/AdminPanel/forms/email.phtml');
-                break;
+        $data = [];
+        if(!empty($id)){
+            $data = $this->anyModel->setTable($table)->getRow(['id'=>$id]);
         }
-        return $template;
+        $this->view->assign('data', $data);
+        return $this->view->render("/AdminPanel/forms/$table.phtml") ?? '';
     }
 
     /**
@@ -165,6 +137,7 @@ class AdminActions
                 case 'staff': $content = $this->getStaff();break;
                 case 'slider': $content = $this->getSlides();break;
                 case 'emails': $content = $this->getEmails();break;
+                case 'prices': $content = $this->getPrices();break;
             }
             $this->view->assign('title', $this->title);
             $this->view->assign('menu', $this->getMenu($page));
@@ -188,6 +161,7 @@ class AdminActions
             'staff' => ['href' => "/admin/staff/", 'label' => 'Сотрудники', 'active' => false],
             'slider' => ['href' => "/admin/slider/", 'label' => 'Слайдер', 'active' => false],
             'emails' => ['href' => "/admin/emails/", 'label' => 'E-mails', 'active' => false],
+            'prices' => ['href' => "/admin/prices/", 'label' => 'Прайс', 'active' => false],
         ];
         if($pages[$currentPage]) $pages[$currentPage]['active'] = true;
         $this->view->assign('pages', $pages);
@@ -255,6 +229,17 @@ class AdminActions
     {
         $this->view->assign('emails', $this->emailsModel->getAll());
         return $this->view->render('/AdminPanel/emails.phtml');
+    }
+
+    /**
+     * Получим прайс
+     * @return string
+     * @throws \Xore\ExceptionApp
+     */
+    private function getPrices(): string
+    {
+        $this->view->assign('prices', $this->pricesModel->getAll());
+        return $this->view->render('/AdminPanel/prices.phtml');
     }
 
     /**
