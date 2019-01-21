@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?=$title?> | МЕДИКА</title>
+    <title><?=$post['title']?> | МЕДИКА</title>
     <link href="/data/public/site/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <script src="/data/public/site/jquery.min.js"></script>
     <script src="/data/public/site/popper.min.js"></script>
@@ -12,18 +12,16 @@
 <body>
 <?=$header?>
 <section class="content section-field">
-    <h1 class="content__title">Что мы лечим</h1>
-    <div class="content__line"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    Боляки моляки ЦЕЕЕЕЕЕЕЕЕЛЫЙ СПИСОК
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="section-title">Статья</h3>
+                <div class="section-line"></div>
+                <?=print_r($post)?>
             </div>
         </div>
+    </div>
 </section>
-
-
 <?=$footer?>
 </body>
 </html>

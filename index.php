@@ -73,6 +73,16 @@ $app->get('/about/', function () {
     return (new PageActions())->getHTML('about');
 });
 
+//список статей
+$app->get('/posts/', function () {
+    return (new PageActions())->getHTML('posts');
+});
+
+//страница статьи
+$app->get('/posts/{id}/', function ($id) {
+    return (new PageActions())->getPost($id);
+});
+
 
 
 //сохранение одного пункта

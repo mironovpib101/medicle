@@ -6,34 +6,45 @@
  * Time: 18:03
  */
 
+use Xore\Request;
 use Xore\View;
 
 class PageActions
 {
     protected $url = '/';
     protected $title = 'Главная страница';
+    protected $pages = [
+        'diseases'    => ['href' => "/diseases/", 'label' => 'Что мы лечим', 'active' => false],
+        'treatment' => ['href' => "/treatment/", 'label' => 'Методы лечения', 'active' => false],
+        'staff'    => ['href' => "/staff/", 'label' => 'Врачи', 'active' => false],
+        'posts'    => ['href' => "/posts/", 'label' => 'Статьи', 'active' => false],
+        'about'   => ['href' => "/about/", 'label' => 'О нас', 'active' => false],
+        'prices'   => ['href' => "/prices/", 'label' => 'Цены', 'active' => false],
+        'contacts'   => ['href' => "/contacts/", 'label' => 'Контакты', 'active' => false],
+    ];
 
     private function getMenu(String $currentPage = null): String
     {
         $view = new View();
-        $pages = [
-            'diseases'    => ['href' => "/diseases/", 'label' => 'Что мы лечим', 'active' => false],
-            'treatment' => ['href' => "/treatment/", 'label' => 'Методы лечения', 'active' => false],
-            'staff'    => ['href' => "/staff/", 'label' => 'Врачи', 'active' => false],
-            'about'   => ['href' => "/about/", 'label' => 'О нас', 'active' => false],
-            'prices'   => ['href' => "/prices/", 'label' => 'Цены', 'active' => false],
-            'contacts'   => ['href' => "/contacts/", 'label' => 'Контакты', 'active' => false],
-        ];
-        if($pages[$currentPage]) $pages[$currentPage]['active'] = true;
-        $view->assign('pages', $pages);
-
+        if($this->pages[$currentPage]) $this->pages[$currentPage]['active'] = true;
+        $view->assign('pages', $this->pages);
         return $view->render('/site/components/menu.phtml');
     }
 
-    public function getHTML(String $page)
+    public function getPost(String $id): String
     {
         $view = new View();
+        $view->assign('post', (new PostsModel())->getRow(['id' => $id]));
+        $view->assign('menu', $this->getMenu('posts'));
+        $view->assign('header', $view->render("/site/components/header.phtml", false));
+        $view->assign('footer', $view->render("/site/components/footer.phtml", false));
 
+        return $view->render("/site/post.phtml", false);
+    }
+
+    public function getHTML(String $page): String
+    {
+        $view = new View();
         switch ($page){
             case 'staff':
                 $view->assign('staff', (new StaffModel())->getAll());
@@ -53,8 +64,15 @@ class PageActions
             case 'diseases':
                 $view->assign('diseases', (new PricesModel())->getAll());
                 break;
+            case 'posts':
+                $model = new PostsModel();
+                $view->assign('posts', $model->getItemsByPage(Request::get('page', 1), 5, true));
+                $view->assign('countPosts',$model->count(['status' => 1]));
+                $view->assign('currentPage', intval(Request::get('page', 1)));
+                break;
         }
 
+        $view->assign('title',  isset($this->pages[$page]) ? $this->pages[$page]['label'] : 404);
         $view->assign('menu', $this->getMenu($page));
         $view->assign('header', $view->render("/site/components/header.phtml", false));
         $view->assign('footer', $view->render("/site/components/footer.phtml", false));

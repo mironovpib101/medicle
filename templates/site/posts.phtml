@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?=$title?> | МЕДИКА</title>
+    <link href="/data/public/site/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <script src="/data/public/site/jquery.min.js"></script>
+    <script src="/data/public/site/popper.min.js"></script>
+    <script src="/data/public/site/bootstrap.min.js"></script>
+    <link href="/data/public/site/styles.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<?=$header?>
+<section class="content section-field">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="section-title">Статьи</h3>
+                <div class="section-line"></div>
+                <table class="table table-striped table-hover prices-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Название</th>
+                        <th scope="col">Ссылка</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($posts as $item) {?>
+                        <tr>
+                            <td><?=print_r($item)?></td>
+                            <td><a href="/posts/<?=$item['id']?>/">Link</a></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <?php
+                    //всего страниц
+                    $countPages = ceil($countPosts / 5);
+                    for($i = 0; $i < $countPages;$i++){
+                        $numberPage = $i+1;
+                        if($currentPage !== $numberPage)
+                            echo "<li class='page-item'><a class='page-link' href='?page=$numberPage'>$numberPage</a></li>";
+                        else
+                            echo "<li class='page-item active'><a class='page-link' href='#'>$numberPage</a></li>";
+                    }
+                    ?>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+<?=$footer?>
+</body>
+</html>
