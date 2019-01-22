@@ -83,7 +83,33 @@ $app->get('/posts/{id}/', function ($id) {
     return (new PageActions())->getPost($id);
 });
 
+//заявка на консультацию
+$app->post('/send_request/', function () use ($app) {
+    $phone = Request::post('phone');
+    $fullanme = Request::post('fullname');
+    $result = false;
+    $app->getResponse()->setContentType('application/json');
 
+    $emailList = [];
+    foreach ((new EmailsModel())->getAll() as $item) {
+        $emailList[] = $item['email'];
+    }
+
+    if(count($emailList) === 0 || empty($fullanme) || empty($phone)){
+        $result = false;
+    }else{
+        $result = Email::send(
+            $emailList,
+            'Новая заявка',
+            "Поступила новая заявка от $fullanme ($phone)"
+        );
+    }
+
+    return json_encode([
+        'data' => $result === false ? Email::getError() : [],
+        'status' => $result
+    ], JSON_UNESCAPED_UNICODE);
+});
 
 //сохранение одного пункта
 $app->post('/admin/save/{table}/', function ($table) use ($app){

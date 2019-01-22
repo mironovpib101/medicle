@@ -36,6 +36,7 @@ class PageActions
         $view = new View();
         $view->assign('post', (new PostsModel())->getRow(['id' => $id]));
         $view->assign('menu', $this->getMenu('posts'));
+        $view->assign('form', $view->render("/site/components/form.phtml", false));
         $view->assign('header', $view->render("/site/components/header.phtml", false));
         $view->assign('footer', $view->render("/site/components/footer.phtml", false));
 
@@ -74,6 +75,7 @@ class PageActions
 
         $view->assign('title',  isset($this->pages[$page]) ? $this->pages[$page]['label'] : 404);
         $view->assign('menu', $this->getMenu($page));
+        $view->assign('form', $view->render("/site/components/form.phtml", false));
         $view->assign('header', $view->render("/site/components/header.phtml", false));
         $view->assign('footer', $view->render("/site/components/footer.phtml", false));
         //подключаем шаблоны
