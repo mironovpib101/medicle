@@ -17,27 +17,7 @@
 <body>
     <?=$header?>
 
-    <div id="carouselSlideMedika" class="carousel slide">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselSlideMedika" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselSlideMedika" data-slide-to="1"></li>
-            <li data-target="#carouselSlideMedika" data-slide-to="2"></li>
-        </ol>
 
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="/data/public/site/image/slide-1.jpg" alt="Первый слайд">
-
-                <div class="slider__cont-text">
-                    <h3 class="slider__title">
-                        Акция!
-                    </h3>
-                    <div class="slider__content-text">
-                        При покупки пакета курсы на лечение грыжи, предоставляем последующую скидку в размере 100 рублей на каждый сеанс, после завершение курса.
-                    </div>
-                    <button class="btn btn--red">
-                        Купить
-                    </button>
 
 
     <?php
@@ -81,21 +61,21 @@
                             <?php
                         }
                     ?>
-
+                    <a class="carousel-control-prev" href="#carouselSlideMedika" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselSlideMedika" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
 
 
                 </div>
 
             </div>
-            <a class="carousel-control-prev" href="#carouselSlideMedika" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselSlideMedika" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
+
+
 
             <?php
         }
