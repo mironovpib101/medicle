@@ -13,53 +13,63 @@
 <body>
     <?=$header?>
 
+    <?php
+        if(count($sliders) > 0) {
+            ?>
 
+            <div id="carouselSlideMedika" class="carousel slide">
+                <ol class="carousel-indicators">
+                    <?php
+                        foreach ($sliders as $index=>$it) {
+                            echo "<li data-target='#carouselSlideMedika' data-slide-to='${index}' class='".($index === 0 ? 'active' : '')."'></li>";
+                        }
+                    ?>
+                </ol>
 
+                <div class="carousel-inner">
 
+                    <?php
+                        foreach ($sliders as $index=>$it) {
+                            $itemClass = $index === 0 ? 'carousel-item active' : 'carousel-item';
+                            ?>
+                                <div class="<?=$itemClass?>">
+                                    <img class="d-block w-100" src="<?=$it['image']?>" alt="<?=$it['title']?>">
 
+                                    <div class="slider__cont-text">
+                                        <h3 class="slider__title">
+                                            <?=$it['title']?>
+                                        </h3>
+                                        <?php
+                                            if(!empty($it['text'])){
+                                                echo "<div class='slider__content-text'>${it['text']}</div>";
+                                            }
+                                        ?>
+                                        <?php
+                                            if(!empty($it['href'])){
+                                                echo "<a class='btn btn--red' href='${it['href']}'>${it['href']}</a>";
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+                            <?php
+                        }
+                    ?>
 
-    <div id="carouselSlideMedika" class="carousel slide">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselSlideMedika" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselSlideMedika" data-slide-to="1"></li>
-            <li data-target="#carouselSlideMedika" data-slide-to="2"></li>
-        </ol>
-
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="/data/public/site/image/slide-1.jpg" alt="Первый слайд">
-
-                <div class="slider__cont-text">
-                    <h3 class="slider__title">
-                        Акция!
-                    </h3>
-                    <div class="slider__content-text">
-                        При покупки пакета курсы на лечение грыжи, предоставляем последующую скидку в размере 100 рублей на каждый сеанс, после завершение курса.
-                    </div>
-                    <button class="btn btn--red">
-                        Купить
-                    </button>
+                    <a class="carousel-control-prev" href="#carouselSlideMedika" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselSlideMedika" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
 
-            <div class="carousel-item">
-                <img class="d-block w-100" src="/data/public/site/image/slide-1.jpg" alt="Первый слайд">
-            </div>
 
-            <div class="carousel-item">
-                <img class="d-block w-100" src="/data/public/site/image/slide-1.jpg" alt="Первый слайд">
-            </div>
-
-            <a class="carousel-control-prev" href="#carouselSlideMedika" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselSlideMedika" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
+            <?php
+        }
+    ?>
 
     <section class="reviews section-field">
         <div class="section-title">Отзывы о нас!</div>
