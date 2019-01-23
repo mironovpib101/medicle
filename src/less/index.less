@@ -13,11 +13,17 @@
 
 body{
     font-family: sans-serif;
+    overflow-x: hidden;
 }
 .section-field {
     padding: 60px 0 30px;
 }
-
+.hidden{
+    opacity:0;
+}
+.visible{
+    opacity:1;
+}
 .arrow-down {
     width: 35px;
     height: 35px;
@@ -57,4 +63,17 @@ body{
     display: block;
     margin: 25px auto;
     background: #91281e;
+}
+.btn.button-show-form {
+    position: fixed;
+    right: 60px;
+    bottom: 30px;
+    z-index: 1001;
+}
+.result_form {
+    margin-top: 1rem;
+}
+.btn.btn-danger {
+    background: @color-red;
+    border-color: @color-red;
 }
