@@ -47,6 +47,11 @@ class PageActions
     {
         $view = new View();
         switch ($page){
+            case 'index':
+                $model = new SliderModel();
+                $table = $model->getTable();
+                $view->assign('sliders', $model->getAll("SELECT * FROM ${table} WHERE status = '1'"));
+                break;
             case 'staff':
                 $view->assign('staff', (new StaffModel())->getAll());
                 break;

@@ -150,7 +150,7 @@ $app->get('/admin/', function () {
 });
 
 //окно авторизации
-$app->get('/admin/login/', function () {
+$app->get('/login/', function () {
     //создаём обработчик для админ панели
     return (new AuthActions())->getForm();
 });
