@@ -30,4 +30,9 @@ $(document).ready(function () {
         $resultPanel.removeAttr("class");
         $resultPanel.addClass("result_form");
     });
+
+     $('#carouselSlideMedika').carousel({
+         interval: 4000
+    });
+    $(".dropdown-toggle").dropdown();
 });
