@@ -45,8 +45,9 @@ class PostsModel extends Model
      * @param bool $onlyPublic
      * @return array
      */
-    public function getItemsByPage(Int $page = 0, Int $count = 5, $onlyPublic = true): Array
+    public function getItemsByPage(Int $page = 1, Int $count = 5, $onlyPublic = true): Array
     {
+        $page--;
         //с какого элемента начать
         $indexStarted = $count*$page;
         //вывод только опубликованых

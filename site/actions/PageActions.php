@@ -78,7 +78,11 @@ class PageActions
                 break;
         }
 
-        $view->assign('title',  isset($this->pages[$page]) ? $this->pages[$page]['label'] : 404);
+        if($page === 'index'){
+            $view->assign('title',  'Главная страница');
+        }else{
+            $view->assign('title',  isset($this->pages[$page]) ? $this->pages[$page]['label'] : 404);
+        }
         $view->assign('menu', $this->getMenu($page));
         $view->assign('form', $view->render("/site/components/form.phtml", false));
         $view->assign('header', $view->render("/site/components/header.phtml", false));
