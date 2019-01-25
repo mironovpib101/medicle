@@ -19,9 +19,20 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h3 class="section-title">Статья</h3>
+                <h3 class="section-title"><?=$post['title']?></h3>
                 <div class="section-line"></div>
-                <?=print_r($post)?>
+                <!-- <?=print_r($post)?> -->
+                <div class="article-new">
+                    <div class="article-new__text">
+                        <?=$post['text']?>
+                    </div>
+
+                    <div class="article-new__date-wrapper">
+                        <span class="article-new__date">
+                            <?=$post['date']?>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

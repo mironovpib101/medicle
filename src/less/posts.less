@@ -1,0 +1,49 @@
+.article-new {
+    margin-top: 35px;
+    &__text {
+        line-height: 22px;
+        text-align: justify;
+
+        > .image:nth-child(odd) {
+            float: left;
+            margin: 0px 20px 10px 0;
+        }
+        > .image:nth-child(even) {
+            float: right;
+            margin: 0px 0px 10px 20px;
+        }
+    }
+    &__date-wrapper {
+        text-align: right;
+        margin-top: 20px;
+    }
+    &__date {
+        color: @color-darkGray;
+    }
+    p {
+        margin-top: 10px;
+    }
+}
+.articles-list {
+    line-height: 22px;
+
+    .row {
+        margin-top: 25px;
+    }
+    &__title {
+        font-weight: bold;
+        font-size: 20px;
+    }
+    &__image {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    &__add-content {
+        text-align: right;
+    }
+}
+.articles-page {
+    nav {
+        margin: 20px auto 0px;
+    }
+}

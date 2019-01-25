@@ -15,28 +15,34 @@
 </head>
 <body>
 <?=$header?>
-<section class="content section-field">
+<section class="content section-field articles-page">
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col-12">
                 <h3 class="section-title">Статьи</h3>
                 <div class="section-line"></div>
-                <table class="table table-striped table-hover prices-table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Название</th>
-                        <th scope="col">Ссылка</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                <div class="articles-list">
                     <?php foreach ($posts as $item) {?>
-                        <tr>
-                            <td><?=print_r($item)?></td>
-                            <td><a href="/posts/<?=$item['id']?>/">Link</a></td>
-                        </tr>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="articles-list__wrapper-image">
+                                    <img src="<?=$item['preview_image']?>" class="articles-list__image" alt="Картинка новости">
+                                </div>
+                            </div>
+                            <div class="col-9">
+                                <div class="articles-list__title">
+                                    <?=$item['title']?>
+                                </div>
+                                <div class="articles-list__text">
+                                    <?=$item['preview_text']?>
+                                </div>
+                                <div class="articles-list__add-content">
+                                    <a href="/posts/<?=$item['id']?>/">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
                     <?php } ?>
-                    </tbody>
-                </table>
+                </div>
             </div>
         </div>
         <div class="row">
