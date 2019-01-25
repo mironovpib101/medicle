@@ -94,4 +94,13 @@ class PageActions
             return $e->getMessage();
         }
     }
+    public function notFound()
+    {
+        $view = new View();
+        $view->assign('menu', $this->getMenu('posts'));
+        $view->assign('header', $view->render("/site/components/header.phtml", false));
+        $view->assign('footer', $view->render("/site/components/footer.phtml", false));
+
+        return $view->render("/site/notFound.phtml", false);
+    }
 }

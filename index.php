@@ -220,7 +220,7 @@ $app->post('/admin/upload/{folder}/', function ($folder) use ($app) {
 });
 
 //если не один route не подошел
-$app->notFound('not found', 404);
+$app->notFound((new PageActions())->notFound(), 404);
 
 //получение результата
 $app->response();
