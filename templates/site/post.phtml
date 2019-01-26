@@ -29,7 +29,7 @@
 
                     <div class="article-new__date-wrapper">
                         <span class="article-new__date">
-                            <?=$post['date']?>
+                            <?=date('d.m.Y',strtotime($post['date']))?>
                         </span>
                     </div>
                 </div>

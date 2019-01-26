@@ -26,7 +26,9 @@
                         <div class="row">
                             <div class="col-3">
                                 <div class="articles-list__wrapper-image">
-                                    <img src="<?=$item['preview_image']?>" class="articles-list__image" alt="Картинка новости">
+                                    <a href="/posts/<?=$item['id']?>/">
+                                        <img src="<?=$item['preview_image']?>" class="articles-list__image" alt="Картинка новости">
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-9">
