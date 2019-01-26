@@ -35,4 +35,15 @@ $(document).ready(function () {
          interval: 4000
     });
     $(".dropdown-toggle").dropdown();
+
+    var scrolled=0;
+
+    $(".arrow-down").on("click" ,function(){
+        scrolled=scrolled+120;
+        $("html").animate({
+            scrollTop:  scrolled
+        });
+
+    });
+
 });
