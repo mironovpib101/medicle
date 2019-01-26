@@ -35,26 +35,17 @@
         <div class="row">
             <div class="col">
                 <div class="galleria-license__wrapper">
-                    <div class="galleria-license__item">
-                        <a href="#" class="galleria-license__link">
-                            <img src="/data/public/site/image/lic1.jpg" alt="img" class="galleria-license__image"/>
-                        </a>
-                    </div>
-                    <div class="galleria-license__item">
-                        <a href="#" class="galleria-license__link">
-                            <img src="/data/public/site/image/lic2.jpg" alt="img" class="galleria-license__image"/>
-                        </a>
-                    </div>
-                    <div class="galleria-license__item">
-                        <a href="#" class="galleria-license__link">
-                            <img src="/data/public/site/image/lic3.jpg" alt="img" class="galleria-license__image"/>
-                        </a>
-                    </div>
-                    <div class="galleria-license__item">
-                        <a href="#" class="galleria-license__link">
-                            <img src="/data/public/site/image/lic4.jpg" alt="img" class="galleria-license__image"/>
-                        </a>
-                    </div>
+                    <?php
+                        foreach ($licenses as $it){
+                            ?>
+                            <div class="galleria-license__item">
+                                <a href="<?=$it['scan']?>" target="_blank" class="galleria-license__link" title="<?=$it['title']?>">
+                                    <img src="<?=$it['preview']?>" alt="<?=$it['title']?>" class="galleria-license__image"/>
+                                </a>
+                            </div>
+                            <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>

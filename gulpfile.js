@@ -5,7 +5,7 @@ const cssnano       = require('gulp-cssnano');
 const autoprefixer  = require('gulp-autoprefixer');
 
 gulp.task('default', () => {
-    gulp.start(['less', 'watch']);
+    gulp.start(['less', 'js', 'watch']);
 });
 
 gulp.task('watch', () => {

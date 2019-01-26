@@ -58,17 +58,14 @@ class PageActions
             case 'prices':
                 $view->assign('prices', (new PricesModel())->getAll());
                 break;
-            case 'contacts':
-                $view->assign('contacts', (new PricesModel())->getAll());
-                break;
-            case 'treatment':
-                $view->assign('treatment', (new PricesModel())->getAll());
-                break;
             case 'about':
-                $view->assign('about', (new PricesModel())->getAll());
-                break;
-            case 'diseases':
-                $view->assign('diseases', (new PricesModel())->getAll());
+                $items = (new LicensesModel())->getAll();
+                foreach ($items as &$item){
+                    $patch = explode('/', $item['scan']);
+                    $patch[count($patch) - 1] = '250.'.$patch[count($patch) - 1];
+                    $item['preview'] = implode('/', $patch);
+                }
+                $view->assign('licenses',$items);
                 break;
             case 'posts':
                 $model = new PostsModel();
