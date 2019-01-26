@@ -42,7 +42,7 @@ $(document).ready(function () {
         scrolled=scrolled+120;
         $("html").animate({
             scrollTop:  scrolled
-        });
+        }, 100);
 
     });
 
