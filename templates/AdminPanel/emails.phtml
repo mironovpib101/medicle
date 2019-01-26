@@ -38,7 +38,7 @@
 	//добавить email
 	$body.on('click', '.btn-create', function () {
 		$.ajax({
-			url: '/admin/form/email/',
+			url: '/admin/form/emails/',
 			type: 'GET',
 			success: function(result) {
 				if(!result.status) return alert('Ошибка');
@@ -76,7 +76,7 @@
 	$body.on('click', '.btn-edit', function () {
 		var id = $(this).data('id');
 		$.ajax({
-			url: '/admin/form/email/'+id+'/',
+			url: '/admin/form/emails/'+id+'/',
 			type: 'GET',
 			success: function(result) {
 				if(!result.status) return alert('Ошибка');

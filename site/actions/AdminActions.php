@@ -176,7 +176,7 @@ class AdminActions
     private function getPosts(): string
     {
         $this->view->assign('posts', $this->postsModel->getItemsByPage(
-            Request::get('page', 1) - 1,
+            Request::get('page', 1),
             Request::get('count', 5),
             !$this->isUser()
         ));

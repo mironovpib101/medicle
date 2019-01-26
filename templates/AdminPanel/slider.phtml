@@ -41,7 +41,7 @@
 	//добавить слайд
 	$body.on('click', '.btn-create', function () {
 		$.ajax({
-			url: '/admin/form/slide/',
+			url: '/admin/form/slides/',
 			type: 'GET',
 			success: function(result) {
 				if(!result.status) return alert('Ошибка');
@@ -79,7 +79,7 @@
 	$body.on('click', '.btn-edit', function () {
 		var id = $(this).data('id');
 		$.ajax({
-			url: '/admin/form/slide/'+id+'/',
+			url: '/admin/form/slides/'+id+'/',
 			type: 'GET',
 			success: function(result) {
 				if(!result.status) return alert('Ошибка');
