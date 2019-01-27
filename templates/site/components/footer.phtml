@@ -1,7 +1,7 @@
 <div class="bottomForm">
-    <h2 class="bottomForm__title">Остальсь вопросы? Или хотите поделится проблемой? - Оставьте свой номер и мы свяжемся с вами</h2>
+    <h2 class="bottomForm__title">Остальсь вопросы? Или хотите поделится проблемой? <br /> - Оставьте свой номер и мы свяжемся с вами</h2>
     <div class="bottomForm__badge">Услуга бесплатна!</div>
-    <form class="form-inline bottomForm__form">
+    <form class="form-inline bottomForm__form ajax">
         <input type="hidden" name="type" value="question"/>
         <div class="row">
             <div class="col">
@@ -11,12 +11,15 @@
                 <input required type="text" class="form-control" placeholder="Телефон">
             </div>
             <div class="col">
-                <button type="submit" class="btn btn-primary">Отправить</button>
+                <button type="submit" class="btn btn-primary btn-danger">Отправить</button>
+            </div>
+            <div class="col">
+                <div class="result_form"></div>
             </div>
         </div>
     </form>
 </div>
-<footer class="footer-site grey-field section-field"">
+<footer class="footer-site grey-field section-field">
     <div class="container">
         <div class="footer">
             <div class="section-title">Давайте оставаться на связи!</div>

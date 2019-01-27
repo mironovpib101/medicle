@@ -17,6 +17,7 @@ var $body = $('body');
 
 $body.on('submit','form.ajax',function(e) {
     e.preventDefault();
+    var $this = $(this);
     var data = new FormData(this);
     data.append('not_spam', '1');
     $.ajax({
@@ -26,12 +27,14 @@ $body.on('submit','form.ajax',function(e) {
         processData: false,
         contentType: false,
         success: function() {
-            $('.result_form').html('Спасибо Вам. Мы перезвоним вам в ближайшее время.');
-            $('.result_form').addClass("alert alert-success");
+            $this.find('.result_form').html('Спасибо. Мы перезвоним вам в ближайшее время.');
+            $this.find('.result_form').addClass("alert alert-success");
+            $this.find("input:not([type='hidden'])").val("");
         },
         error: function() {
-            $('.result_form').html('Ошибка.');
-            $('.result_form').addClass("alert alert-danger");
+            $this.find('.result_form').html('Ошибка.');
+            $this.find('.result_form').addClass("alert alert-danger");
+            $this.find("input:not([type='hidden'])").val("");
         }
     });
     e.preventDefault();
