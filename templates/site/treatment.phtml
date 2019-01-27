@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title><?=$title?> | МЕДИКА</title>
-
     <script src="/data/public/site/jquery.min.js"></script>
     <script src="/data/public/site/popper.min.js"></script>
     <script src="/data/public/site/bootstrap.min.js"></script>
@@ -13,6 +12,7 @@
     <link href="/data/public/site/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="/data/public/site/styles.css" type="text/css" rel="stylesheet" />
     <link href="/data/public/site/animate.min.css" type="text/css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <?=$header?>
@@ -20,11 +20,11 @@
     <h1 class="content__title">Методы лечения</h1>
     <div class="content__line"></div>
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    Методы лечения
-                </div>
-            </div>
+            <?php
+                foreach ($methods as $method) {
+                    echo "<a href='/treatment/$method[id]/'>$method[title]</a>";
+                }
+            ?>
         </div>
 </section>
 

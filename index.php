@@ -16,6 +16,8 @@ require_once 'site/models/StaffModel.php';
 require_once 'site/models/SliderModel.php';
 require_once 'site/models/PricesModel.php';
 require_once 'site/models/EmailsModel.php';
+require_once 'site/models/PainModel.php';
+require_once 'site/models/MethodsModel.php';
 //подключим экшены
 require_once 'site/actions/PageActions.php';
 require_once 'site/actions/AdminActions.php';
@@ -44,71 +46,53 @@ $app->get('/', function () {
 });
 
 //Врачи
-$app->get('/staff/', function () {
-    return (new PageActions())->getHTML('staff');
-});
+$app->get('/{page}/', function ($page) use ($app) {
+    $pages = ['staff', 'prices', 'contacts', 'treatment', 'diseases', 'about', 'posts', 'send_request', 'admin', 'login'];
+    if(in_array($page, $pages)){
+        switch ($page){
+            default: return (new PageActions())->getHTML($page);
+            case 'send_request':
+                $phone = Request::post('phone');
+                $fullanme = Request::post('fullname');
+                $result = false;
+                $app->getResponse()->setContentType('application/json');
 
-//прайс лист
-$app->get('/prices/', function () {
-    return (new PageActions())->getHTML('prices');
-});
+                $emailList = [];
+                foreach ((new EmailsModel())->getAll() as $item) {
+                    $emailList[] = $item['email'];
+                }
 
-//контакты
-$app->get('/contacts/', function () {
-    return (new PageActions())->getHTML('contacts');
-});
+                if(count($emailList) === 0 || empty($fullanme) || empty($phone)){
+                    $result = false;
+                }else{
+                    $result = Email::send(
+                        $emailList,
+                        'Новая заявка',
+                        "Поступила новая заявка от $fullanme ($phone)"
+                    );
+                }
 
-//Методы лечения
-$app->get('/treatment/', function () {
-    return (new PageActions())->getHTML('treatment');
-});
+                return json_encode([
+                    'data' => $result === false ? Email::getError() : [],
+                    'status' => $result
+                ], JSON_UNESCAPED_UNICODE);
+            case 'admin': return (new AdminActions())->getHTML('Добро пожаловать!');
+            case 'login': return (new AuthActions())->getForm();
 
-//Что мы лечим
-$app->get('/diseases/', function () {
-    return (new PageActions())->getHTML('diseases');
-});
-
-//О нас
-$app->get('/about/', function () {
-    return (new PageActions())->getHTML('about');
-});
-
-//список статей
-$app->get('/posts/', function () {
-    return (new PageActions())->getHTML('posts');
-});
-
-//страница статьи
-$app->get('/posts/{id}/', function ($id) {
-    return (new PageActions())->getPost($id);
-});
-
-//заявка на консультацию
-$app->post('/send_request/', function () use ($app) {
-    $phone = Request::post('phone');
-    $fullanme = Request::post('fullname');
-    $result = false;
-    $app->getResponse()->setContentType('application/json');
-
-    $emailList = [];
-    foreach ((new EmailsModel())->getAll() as $item) {
-        $emailList[] = $item['email'];
-    }
-
-    if(count($emailList) === 0 || empty($fullanme) || empty($phone)){
-        $result = false;
+        }
     }else{
-        $result = Email::send(
-            $emailList,
-            'Новая заявка',
-            "Поступила новая заявка от $fullanme ($phone)"
-        );
+        $app->getResponse()->setCode(404);
+        return (new PageActions())->notFound();
     }
+});
 
-    return json_encode([
-        'data' => $result === false ? Email::getError() : [],
-        'status' => $result
-    ], JSON_UNESCAPED_UNICODE);
+//получить страницу описания недуга
+$app->get('/pain/{id}/', function ($id){
+    return (new PageActions())->getPain($id);
+});
+//получить страницу описания метода лечения
+$app->get('/treatment/{id}/', function ($id){
+    return (new PageActions())->getMethod($id);
 });
 
 //сохранение одного пункта
@@ -141,18 +125,6 @@ $app->delete('/admin/delete/{table}/{id}/', function ($table, $id)  use ($app) {
         'data' => ['table' => $table, 'id' => $id],
         'status' => (new AdminActions())->removeElement($table, $id)
     ], JSON_UNESCAPED_UNICODE);
-});
-
-//админка
-$app->get('/admin/', function () {
-    //создаём обработчик для админ панели
-    return (new AdminActions())->getHTML('Добро пожаловать!');
-});
-
-//окно авторизации
-$app->get('/login/', function () {
-    //создаём обработчик для админ панели
-    return (new AuthActions())->getForm();
 });
 
 //авторизация

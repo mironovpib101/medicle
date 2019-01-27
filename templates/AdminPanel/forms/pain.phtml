@@ -1,0 +1,20 @@
+<form class="ajax" method="post" action="/admin/save/pain/" autocomplete="off">
+    <div class="form-group">
+        <label for="painName">Название боли</label>
+        <input value="<?=isset($data['title']) ? $data['title'] : ''?>" name="title" type="text" class="form-control" id="painName" placeholder="Введите заголовок" required>
+    </div>
+    <div class="form-group">
+        <label for="painLeft">LEFT: </label>
+        <input value="<?=isset($data['left']) ? $data['left'] : ''?>" name="left" type="text" class="form-control" id="painLeft" placeholder="Введите left" required>
+    </div>
+    <div class="form-group">
+        <label for="painTop">TOP: </label>
+        <input value="<?=isset($data['top']) ? $data['top'] : ''?>" name="top" type="text" class="form-control" id="painTop" placeholder="Введите top" required>
+    </div>
+    <div class="form-group">
+        <label for="postText">Текст</label>
+        <textarea class="form-control editor" id="postText" name="text" ><?=isset($data['text']) ? $data['text'] : ''?></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>

@@ -15,6 +15,30 @@
 		display: none !important;
 	}
 }
+
+@media (max-width: 1100px) {
+    .bottomForm{
+        &__badge{
+            position: relative;
+            transform: none;
+            top: auto;
+            right: auto;
+            padding: .3em 0;
+        }
+
+        &__form{
+            max-width: none;
+            margin: auto;
+        }
+
+        .row{flex-direction: column;}
+
+        input, button {
+            width: 100vw !important;
+        }
+    }
+}
+
 @media (max-width: 990px) {
 
 	.nav.justify-content-end {

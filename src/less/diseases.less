@@ -1,0 +1,40 @@
+#skeleton{
+    background: url(/data/public/site/image/man_opacity.jpg) no-repeat;
+    width: 800px;
+    height: 800px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+[id^='disease'] {
+    position: absolute;
+    background: rgba(255, 255, 255, .7);
+    border: 1px solid @color-red;
+    font-size: 1.3em;
+    cursor: pointer;
+    text-decoration: none !important;
+
+    &:hover{
+        background: #FFF;
+    }
+}
+
+@media (max-width: 800px) {
+    #skeleton{
+        background: none;
+        width: auto;
+        height: auto;
+    }
+
+    [id^='disease']{
+        position: relative;
+        width: 100%;
+        top: auto!important;
+        left: auto!important;
+        display: block;
+        text-align: center;
+        padding: .3em;
+        margin: 3px 0;
+    }
+}

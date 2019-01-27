@@ -12,17 +12,22 @@ use Xore\View;
 class PageActions
 {
     protected $url = '/';
-    protected $title = 'Главная страница';
     protected $pages = [
+        'about'   => ['href' => "/about/", 'label' => 'О центре', 'active' => false],
         'diseases'    => ['href' => "/diseases/", 'label' => 'Что мы лечим', 'active' => false],
         'treatment' => ['href' => "/treatment/", 'label' => 'Методы лечения', 'active' => false],
         'staff'    => ['href' => "/staff/", 'label' => 'Врачи', 'active' => false],
         'posts'    => ['href' => "/posts/", 'label' => 'Статьи', 'active' => false],
-        'about'   => ['href' => "/about/", 'label' => 'О нас', 'active' => false],
         'prices'   => ['href' => "/prices/", 'label' => 'Цены', 'active' => false],
         'contacts'   => ['href' => "/contacts/", 'label' => 'Контакты', 'active' => false],
     ];
+    protected $title = 'Главная страница';
 
+    /**
+     * @param String|null $currentPage
+     * @return String
+     * @throws \Xore\ExceptionApp
+     */
     private function getMenu(String $currentPage = null): String
     {
         $view = new View();
@@ -31,18 +36,11 @@ class PageActions
         return $view->render('/site/components/menu.phtml');
     }
 
-    public function getPost(String $id): String
-    {
-        $view = new View();
-        $view->assign('post', (new PostsModel())->getRow(['id' => $id]));
-        $view->assign('menu', $this->getMenu('posts'));
-        $view->assign('form', $view->render("/site/components/form.phtml", false));
-        $view->assign('header', $view->render("/site/components/header.phtml", false));
-        $view->assign('footer', $view->render("/site/components/footer.phtml", false));
-
-        return $view->render("/site/post.phtml", false);
-    }
-
+    /**
+     * @param String $page
+     * @return String
+     * @throws \Xore\ExceptionApp
+     */
     public function getHTML(String $page): String
     {
         $view = new View();
@@ -58,6 +56,12 @@ class PageActions
             case 'prices':
                 $view->assign('prices', (new PricesModel())->getAll());
                 break;
+            case 'treatment':
+                $view->assign('methods', (new MethodsModel())->getAll());
+                break;
+            case 'diseases':
+                $view->assign('pains', (new PainModel())->getAll());
+                break;
             case 'about':
                 $items = (new LicensesModel())->getAll();
                 foreach ($items as &$item){
@@ -69,7 +73,7 @@ class PageActions
                 break;
             case 'posts':
                 $model = new PostsModel();
-                $view->assign('posts', $model->getItemsByPage(Request::get('page', 1), 5, true));
+                $view->assign('posts', $model->getPublic());
                 $view->assign('countPosts',$model->count(['status' => 1]));
                 $view->assign('currentPage', intval(Request::get('page', 1)));
                 break;
@@ -91,6 +95,49 @@ class PageActions
             return $e->getMessage();
         }
     }
+
+    /**
+     * @param String $id
+     * @return string
+     * @throws \Xore\ExceptionApp
+     */
+    public function getPain(String $id): string
+    {
+        $pain = (new PainModel())->getRow(['id'=>$id]);
+        if(!$pain) return $this->notFound();
+
+        $view = new View();
+        $view->assign('menu', $this->getMenu('diseases'));
+        $view->assign('header', $view->render("/site/components/header.phtml", false));
+        $view->assign('footer', $view->render("/site/components/footer.phtml", false));
+        $view->assign('pain', $pain);
+
+        return $view->render("/site/pain.phtml", false);
+    }
+
+    /**
+     * @param String $id
+     * @return string
+     * @throws \Xore\ExceptionApp
+     */
+    public function getMethod(String $id): string
+    {
+        $pain = (new MethodsModel())->getRow(['id'=>$id]);
+        if(!$pain) return $this->notFound();
+
+        $view = new View();
+        $view->assign('menu', $this->getMenu('treatment'));
+        $view->assign('header', $view->render("/site/components/header.phtml", false));
+        $view->assign('footer', $view->render("/site/components/footer.phtml", false));
+        $view->assign('pain', $pain);
+
+        return $view->render("/site/method.phtml", false);
+    }
+
+    /**
+     * @return string
+     * @throws \Xore\ExceptionApp
+     */
     public function notFound()
     {
         $view = new View();

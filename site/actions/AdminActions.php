@@ -24,6 +24,8 @@ class AdminActions
     protected $anyModel;
     protected $pricesModel;
     protected $licensesModel;
+    protected $painModel;
+    protected $methodsModel;
     protected $response;
     protected $view;
 
@@ -42,6 +44,8 @@ class AdminActions
         $this->emailsModel = new EmailsModel();
         $this->anyModel = new AnyModel();
         $this->pricesModel = new PricesModel();
+        $this->painModel = new PainModel();
+        $this->methodsModel = new MethodsModel();
         //ответ системы
         $this->response = new Response();
         //шаблоны
@@ -101,6 +105,10 @@ class AdminActions
                 return $this->emailsModel->setItem($data);
             case 'prices':
                 return $this->pricesModel->setItem($data);
+            case 'pain':
+                return $this->painModel->setItem($data);
+            case 'methods':
+                return $this->methodsModel->setItem($data);
             default: return ['table' => 'Таблица не найдена'];
         }
     }
@@ -138,6 +146,8 @@ class AdminActions
                 case 'slider': $content = $this->getSlides();break;
                 case 'emails': $content = $this->getEmails();break;
                 case 'prices': $content = $this->getPrices();break;
+                case 'pain': $content = $this->getPain();break;
+                case 'methods': $content = $this->getMethods();break;
             }
             $this->view->assign('title', $this->title);
             $this->view->assign('menu', $this->getMenu($page));
@@ -162,6 +172,8 @@ class AdminActions
             'slider' => ['href' => "/admin/slider/", 'label' => 'Слайдер', 'active' => false],
             'emails' => ['href' => "/admin/emails/", 'label' => 'E-mails', 'active' => false],
             'prices' => ['href' => "/admin/prices/", 'label' => 'Прайс', 'active' => false],
+            'pain' => ['href' => "/admin/pain/", 'label' => 'Боль', 'active' => false],
+            'methods' => ['href' => "/admin/methods/", 'label' => 'Методы лечения', 'active' => false],
         ];
         if($pages[$currentPage]) $pages[$currentPage]['active'] = true;
         $this->view->assign('pages', $pages);
@@ -175,11 +187,7 @@ class AdminActions
      */
     private function getPosts(): string
     {
-        $this->view->assign('posts', $this->postsModel->getItemsByPage(
-            Request::get('page', 1),
-            Request::get('count', 5),
-            !$this->isUser()
-        ));
+        $this->view->assign('posts', $this->postsModel->getAll());
         $this->view->assign('currentPage', intval(Request::get('page', 1)));
         $this->view->assign('countPosts',$this->postsModel->count(
             $this->isUser() ? null : ['status' => 1]
@@ -240,6 +248,28 @@ class AdminActions
     {
         $this->view->assign('prices', $this->pricesModel->getAll());
         return $this->view->render('/AdminPanel/prices.phtml');
+    }
+
+    /**
+     * Получим боль
+     * @return string
+     * @throws \Xore\ExceptionApp
+     */
+    private function getPain(): string
+    {
+        $this->view->assign('pains', $this->painModel->getAll());
+        return $this->view->render('/AdminPanel/pain.phtml');
+    }
+
+    /**
+     * Получим методы лечения
+     * @return string
+     * @throws \Xore\ExceptionApp
+     */
+    private function getMethods(): string
+    {
+        $this->view->assign('methods', $this->methodsModel->getAll());
+        return $this->view->render('/AdminPanel/methods.phtml');
     }
 
     /**

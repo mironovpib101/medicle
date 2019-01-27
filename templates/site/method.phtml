@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?=$post['title']?> | МЕДИКА</title>
+    <title><?=$pain['title']?> | МЕДИКА</title>
     <script src="/data/public/site/jquery.min.js"></script>
     <script src="/data/public/site/popper.min.js"></script>
     <script src="/data/public/site/bootstrap.min.js"></script>
@@ -12,6 +12,8 @@
     <link href="/data/public/site/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="/data/public/site/styles.css" type="text/css" rel="stylesheet" />
     <link href="/data/public/site/animate.min.css" type="text/css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
 </head>
 <body>
 <?=$header?>
@@ -19,27 +21,22 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h3 class="section-title"><?=$post['title']?></h3>
-                <div class="section-line"></div>
-                <!-- <?=print_r($post)?> -->
-                <div class="article-new">
-                    <div class="article-new__text">
-                        <?=$post['text']?>
-                    </div>
-
-                    <div class="article-new__date-wrapper">
-                        <span class="article-new__date">
-                            <?=date('d.m.Y',strtotime($post['date']))?>
-                        </span>
+                <div class="content__center">
+                    <h1 class="section-title"><?=$pain['title']?></h1>
+                    <div class="section-line"></div>
+                    <div class="content__wrapper">
+                        <div class="text">
+                            <?=$pain['text']?>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
 <?=$footer?>
-
-
-    <script src="/data/public/site/animationElement.js"></script>
+<script src="/data/public/site/animationElement.js"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?=$title?> | МЕДИКА</title>
+    <title><?=$pain['title']?> | МЕДИКА</title>
     <script src="/data/public/site/jquery.min.js"></script>
     <script src="/data/public/site/popper.min.js"></script>
     <script src="/data/public/site/bootstrap.min.js"></script>
@@ -13,25 +13,26 @@
     <link href="/data/public/site/styles.css" type="text/css" rel="stylesheet" />
     <link href="/data/public/site/animate.min.css" type="text/css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
 </head>
 <body>
 <?=$header?>
 <section class="content section-field">
-    <h1 class="content__title">Что мы лечим</h1>
-    <div class="content__line"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div id="skeleton">
-                        <?php
-                            foreach ($pains as $pain){
-                                echo "<a href='/pain/$pain[id]/' style='top: $pain[top]px;left: $pain[left]px' id='disease:$pain[id]'>$pain[title]</a>";
-                            }
-                        ?>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="content__center">
+                    <h1 class="section-title"><?=$pain['title']?></h1>
+                    <div class="section-line"></div>
+                    <div class="content__wrapper">
+                        <div class="text">
+                            <?=$pain['text']?>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
 
 

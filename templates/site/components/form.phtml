@@ -12,6 +12,7 @@
       </div>
       <div class="modal-body">
         <form class="ajax" method="post" action="/send_request/" autocomplete="off">
+            <input type="hidden" name="type" value="request"/>
             <div class="form-group">
                 <label for="form:phone">Контактный телефон</label>
                 <input name="phone" type="text" class="form-control" id="form:phone" placeholder="Введите телефон" required>

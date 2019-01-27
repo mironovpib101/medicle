@@ -62,3 +62,38 @@
     }
   }
 }
+
+.bottomForm{
+  background: @color-blue;
+  padding: 4em 0;
+  position: relative;
+  overflow: hidden;
+
+  &__title{
+    font-size: 2em;
+    text-align: center;
+    max-width: 730px;
+    margin: 0 auto;
+    color: #FFF;
+  }
+
+  &__form{
+    max-width: 730px;
+    margin: 1em auto 0;
+  }
+
+  &__badge{
+    position: absolute;
+    transform: rotate(30deg);
+    background: @color-red;
+    color: @color-white;
+    right: -160px;
+    font-size: 2em;
+    top: 70px;
+    text-align: center;
+    padding: .3em 5em;
+  }
+  input, button {
+    width: 220px !important;
+  }
+}

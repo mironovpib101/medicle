@@ -12,6 +12,7 @@
     <link href="/data/public/site/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="/data/public/site/styles.css" type="text/css" rel="stylesheet" />
     <link href="/data/public/site/animate.min.css" type="text/css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <?=$header?>
@@ -22,8 +23,16 @@
                 <h3 class="section-title">Статьи</h3>
                 <div class="section-line"></div>
                 <div class="articles-list">
+                    <div class="row">
+                        <?php foreach ($posts as $item) {?>
+                            <div class="articles-list__title">
+                                <a href="#post:<?=$item['id']?>"><?=$item['title']?></a>
+                            </div>
+                        <?php } ?>
+                    </div>
                     <?php foreach ($posts as $item) {?>
-                        <div class="row">
+                        <div class="row" id="post:<?=$item['id']?>
+">
                             <div class="col-3">
                                 <div class="articles-list__wrapper-image">
                                     <a href="/posts/<?=$item['id']?>/">
@@ -38,31 +47,11 @@
                                 <div class="articles-list__text">
                                     <?=$item['preview_text']?>
                                 </div>
-                                <div class="articles-list__add-content">
-                                    <a href="/posts/<?=$item['id']?>/">Подробнее</a>
-                                </div>
                             </div>
                         </div>
                     <?php } ?>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <?php
-                    //всего страниц
-                    $countPages = ceil($countPosts / 5);
-                    for($i = 0; $i < $countPages;$i++){
-                        $numberPage = $i+1;
-                        if($currentPage !== $numberPage)
-                            echo "<li class='page-item'><a class='page-link' href='?page=$numberPage'>$numberPage</a></li>";
-                        else
-                            echo "<li class='page-item active'><a class='page-link' href='#'>$numberPage</a></li>";
-                    }
-                    ?>
-                </ul>
-            </nav>
         </div>
     </div>
 </section>

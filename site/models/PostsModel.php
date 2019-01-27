@@ -21,6 +21,16 @@ class PostsModel extends Model
     }
 
     /**
+     * получить все опубликованые статьи
+     * @return array
+     */
+    public function getPublic(): array
+    {
+        $result = $this->getAll("SELECT * FROM '".$this->getTable()."' WHERE status = 1");
+        return !$result ? [] : $result;
+    }
+
+    /**
      * Добавление нового поста
      * @param array $data
      * @return array
