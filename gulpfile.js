@@ -32,6 +32,7 @@ gulp.task('js', function () {
         'src/js/jquery.min.js',
         'src/bootstrap.min.js',
         'src/js/script.js',
+        'src/js/animationElement.js',
     ])
         .pipe(concat('data/public/site/scripts.js'))
         .pipe(gulp.dest('.'))

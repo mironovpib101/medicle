@@ -47,35 +47,10 @@ $app->get('/', function () {
 
 //Врачи
 $app->get('/{page}/', function ($page) use ($app) {
-    $pages = ['staff', 'prices', 'contacts', 'treatment', 'diseases', 'about', 'posts', 'send_request', 'admin', 'login'];
+    $pages = ['staff', 'prices', 'contacts', 'treatment', 'diseases', 'about', 'posts', 'admin', 'login'];
     if(in_array($page, $pages)){
         switch ($page){
             default: return (new PageActions())->getHTML($page);
-            case 'send_request':
-                $phone = Request::post('phone');
-                $fullanme = Request::post('fullname');
-                $result = false;
-                $app->getResponse()->setContentType('application/json');
-
-                $emailList = [];
-                foreach ((new EmailsModel())->getAll() as $item) {
-                    $emailList[] = $item['email'];
-                }
-
-                if(count($emailList) === 0 || empty($fullanme) || empty($phone)){
-                    $result = false;
-                }else{
-                    $result = Email::send(
-                        $emailList,
-                        'Новая заявка',
-                        "Поступила новая заявка от $fullanme ($phone)"
-                    );
-                }
-
-                return json_encode([
-                    'data' => $result === false ? Email::getError() : [],
-                    'status' => $result
-                ], JSON_UNESCAPED_UNICODE);
             case 'admin': return (new AdminActions())->getHTML('Добро пожаловать!');
             case 'login': return (new AuthActions())->getForm();
 
@@ -84,6 +59,33 @@ $app->get('/{page}/', function ($page) use ($app) {
         $app->getResponse()->setCode(404);
         return (new PageActions())->notFound();
     }
+});
+
+$app->post('/send_request/', function () use ($app) {
+    $phone = Request::post('phone');
+    $fullanme = Request::post('fullname');
+    $result = false;
+    $app->getResponse()->setContentType('application/json');
+
+    $emailList = [];
+    foreach ((new EmailsModel())->getAll() as $item) {
+        $emailList[] = $item['email'];
+    }
+
+    if(count($emailList) === 0 || empty($fullanme) || empty($phone)){
+        $result = false;
+    }else{
+        $result = Email::send(
+            $emailList,
+            'Новая заявка',
+            "Поступила новая заявка от $fullanme ($phone)"
+        );
+    }
+
+    return json_encode([
+        'data' => $result === false ? Email::getError() : [],
+        'status' => $result
+    ], JSON_UNESCAPED_UNICODE);
 });
 
 //получить страницу описания недуга
