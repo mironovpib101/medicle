@@ -26,7 +26,7 @@ class PostsModel extends Model
      */
     public function getPublic(): array
     {
-        $result = $this->getAll("SELECT * FROM '".$this->getTable()."' WHERE status = 1");
+        $result = $this->getAll("SELECT * FROM ".$this->getTable()." WHERE status = 1 ORDER BY date ASC");
         return !$result ? [] : $result;
     }
 

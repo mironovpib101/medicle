@@ -6,9 +6,6 @@
     <script src="/data/public/site/jquery.min.js"></script>
     <script src="/data/public/site/popper.min.js"></script>
     <script src="/data/public/site/bootstrap.min.js"></script>
-    <script src="/data/public/site/jquery-migrate-3.0.0.min.js"></script>
-    <script src="/data/public/site/waypoints.min.js"></script>
-    <script src="/data/public/site/animate-css.js"></script>
     <link href="/data/public/site/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="/data/public/site/styles.css" type="text/css" rel="stylesheet" />
     <link href="/data/public/site/animate.min.css" type="text/css" rel="stylesheet" />
@@ -24,30 +21,44 @@
                 <div class="section-line"></div>
                 <div class="articles-list">
                     <div class="row">
-                        <?php foreach ($posts as $item) {?>
-                            <div class="articles-list__title">
-                                <a href="#post:<?=$item['id']?>"><?=$item['title']?></a>
-                            </div>
+                        <ul>
+                        <?php foreach ($posts as $i => $item) {?>
+                          <li>
+                              <div class="articles-list__title">
+                                 <?=$i + 1?>. <a href="#post:<?=$item['id']?>"><?=$item['title']?></a>
+                              </div>
+                          </li>
                         <?php } ?>
+                        </ul>
                     </div>
-                    <?php foreach ($posts as $item) {?>
-                        <div class="row" id="post:<?=$item['id']?>
-">
-                            <div class="col-3">
-                                <div class="articles-list__wrapper-image">
-                                    <a href="/posts/<?=$item['id']?>/">
-                                        <img src="<?=$item['preview_image']?>" class="articles-list__image" alt="Картинка новости">
-                                    </a>
+                    <?php foreach ($posts as $i => $item) {?>
+                        <div class="row" id="post:<?=$item['id']?>">
+                            <?php if(!empty($item['preview_image'])) {?>
+                                <div class="col-3">
+                                    <div class="articles-list__wrapper-image">
+                                        <a href="/posts/<?=$item['id']?>/">
+                                            <img src="<?=$item['preview_image']?>" class="articles-list__image" alt="Картинка новости">
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-9">
-                                <div class="articles-list__title">
-                                    <?=$item['title']?>
+                                <div class="col-9 text">
+                                    <div class="articles-list__title">
+                                        <h2><?=$i + 1?>. <?=$item['title']?></h2>
+                                    </div>
+                                    <div class="articles-list__text">
+                                        <?=$item['preview_text']?>
+                                    </div>
                                 </div>
-                                <div class="articles-list__text">
-                                    <?=$item['preview_text']?>
+                            <?php }else{ ?>
+                                <div class="col-12 text">
+                                    <div class="articles-list__title">
+                                        <h2><?=$i + 1?>. <?=$item['title']?></h2>
+                                    </div>
+                                    <div class="articles-list__text">
+                                        <?=$item['preview_text']?>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php } ?>
                         </div>
                     <?php } ?>
                 </div>

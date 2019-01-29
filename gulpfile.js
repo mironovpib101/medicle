@@ -31,6 +31,9 @@ gulp.task('js', function () {
     gulp.src([
         'src/js/jquery.min.js',
         'src/bootstrap.min.js',
+        'src/js/jquery-migrate-3.0.0.min.js',
+        'src/js/waypoints.min.js',
+        'src/js/animate-css.js',
         'src/js/script.js',
         'src/js/animationElement.js',
     ])
