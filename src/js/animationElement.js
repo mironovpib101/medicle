@@ -26,10 +26,10 @@ $body.on('submit','form.ajax',function(e) {
 });
 
 $(document).ready(function () {
-	$(".reviews__answer:not(.reviews__answer--right-photo), .footer__box--left, .staff > .staff__row:odd").animated("fadeInLeft", "fadeInLeft");
-	$(".reviews__answer--right-photo, .footer__box--right, .slider__cont-text, .staff > .staff__row:even").animated("fadeInRight", "fadeInRight");
-	$(".section-title, .section-line, .footer__text, .content__title, .content__line").animated("fadeInDown", "fadeInDown");
-	$(".galleria-license__item, .prices-table").animated("fadeInUp", "fadeInUp");
+	$(".reviews__answer:not(.reviews__answer--right-photo), .footer__box--left, .staff > .staff__row:odd, .articles-list__title, .treatment-list, .section-pain .text, .pain-forms .text, .about-section ").animated("fadeInLeft", "fadeInLeft");
+	$(".reviews__answer--right-photo, .footer__box--right, .slider__cont-text, .staff > .staff__row:even, .articles-list__text").animated("fadeInRight", "fadeInRight");
+	$(".section-title, .section-line, .footer__text, .content__title, .content__line, .bottomForm__form").animated("fadeInDown", "fadeInDown");
+	$(".galleria-license__item, .prices-table, .bottomForm__title").animated("fadeInUp", "fadeInUp");
 
 
 

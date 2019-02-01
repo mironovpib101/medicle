@@ -13,10 +13,10 @@
 </head>
 <body>
 <?=$header?>
-<section class="content section-field">
+<section class="content section-field treatment-form">
     <h1 class="content__title">Методы лечения</h1>
     <div class="content__line"></div>
-        <div class="container">
+        <div class="container treatment-list">
             <?php
                 foreach ($methods as $i => $method) {
                     echo '<div>'.($i + 1)." <a href='/treatment/$method[id]/'>$method[title]</a></div>";
