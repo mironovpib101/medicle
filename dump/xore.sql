@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Янв 29 2019 г., 21:24
--- Версия сервера: 5.7.24-0ubuntu0.18.04.1
+-- Время создания: Фев 01 2019 г., 20:58
+-- Версия сервера: 5.7.25-0ubuntu0.18.04.2
 -- Версия PHP: 7.2.10-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -39,7 +39,6 @@ CREATE TABLE `emails` (
 
 INSERT INTO `emails` (`id`, `email`) VALUES
 (1, 'mironovpib101@gmail.com'),
-(2, 'olegalego@gmail.com'),
 (3, 'mironovpib101@mail.ru');
 
 -- --------------------------------------------------------
@@ -208,7 +207,9 @@ CREATE TABLE `slides` (
 --
 
 INSERT INTO `slides` (`id`, `image`, `href`, `text`, `title`, `status`) VALUES
-(1, 'http://xore/data/public/slider/slide1.png', 'http://xore/prices/', 'В связи с расширением, мы предоставляем вам новый список наших услуг', 'Мы открылись!', 1);
+(2, 'http://xore/data/public/slider/motokton.jpg', '/treatment/1/', 'В нашем центре предоставляются высококачественные услуги по лечению хронической боли', 'Лечение хронической боли', 1),
+(3, 'http://xore/data/public/slider/beatch.jpg', '/diseases/', 'К вашему вниманию предоставляется!', 'Возвращение к активной жизни без боли', 1),
+(4, 'http://xore/data/public/slider/slide1.png', '/prices/', 'В связи с открытием нового сайта, мы предоставляем вам новый список наших услуг', 'Открылся новый сайт!', 1);
 
 -- --------------------------------------------------------
 
@@ -228,8 +229,7 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`id`, `fullname`, `photo`, `about`) VALUES
-(4, 'Иван Иванович Иванов', 'http://xore/data/public/staff/3196.jpg', 'Квалифицированный специалист, ... хороший специалист, отличный специалист, лучший специалист.'),
-(5, 'Иван Иванович Иванов', 'http://xore/data/public/staff/Peganov.jpg', ' квалифицированный специалист, ... хороший специалист, отличный специалист, лучший специалист.');
+(5, 'Булгаков Иван Олегович', 'http://xore/data/public/staff/doktor.jpg', 'Я, Булгаков Иван Олегович, нейрохирург высшей категории, кандидат медицинских наук, готов предложить распространенные консервативные и оперативные методы лечения нейрохирургической патологии.');
 
 -- --------------------------------------------------------
 
@@ -357,7 +357,7 @@ ALTER TABLE `prices`
 -- AUTO_INCREMENT для таблицы `slides`
 --
 ALTER TABLE `slides`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `staff`
