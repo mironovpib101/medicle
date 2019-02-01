@@ -58,17 +58,22 @@ $body.on('submit','form.ajax',function(e) {
         url: "/send_request/",
         type: "POST",
         data: data,
+        dataType: "json",
         processData: false,
         contentType: false,
-        success: function() {
-            $this.find('.result_form').html('Спасибо. Мы перезвоним вам в ближайшее время.');
-            $this.find('.result_form').addClass("alert alert-success");
-            $this.find("input:not([type='hidden'])").val("");
+        success: function(res) {
+            if(res.status){
+                $this.find('.result_form').html('Спасибо. Мы перезвоним вам в ближайшее время.');
+                $this.find('.result_form').addClass("alert alert-success");
+                $this.find("input:not([type='hidden'])").val("");
+            }else{
+                $this.find('.result_form').html('Ошибка. Свяжитесь с нами по телефону 49-08-39.');
+                $this.find('.result_form').addClass("alert alert-danger");
+            }
         },
         error: function() {
-            $this.find('.result_form').html('Ошибка.');
+            $this.find('.result_form').html('Ошибка. Свяжитесь с нами по телефону 49-08-39.');
             $this.find('.result_form').addClass("alert alert-danger");
-            $this.find("input:not([type='hidden'])").val("");
         }
     });
     e.preventDefault();

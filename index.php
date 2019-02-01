@@ -61,9 +61,12 @@ $app->get('/{page}/', function ($page) use ($app) {
     }
 });
 
+//получение данных с форм записи
 $app->post('/send_request/', function () use ($app) {
     $phone = Request::post('phone');
     $fullanme = Request::post('fullname');
+    $spam = Request::post('not_spam');
+    $type = Request::post('type');
     $result = false;
     $app->getResponse()->setContentType('application/json');
 
@@ -72,13 +75,20 @@ $app->post('/send_request/', function () use ($app) {
         $emailList[] = $item['email'];
     }
 
-    if(count($emailList) === 0 || empty($fullanme) || empty($phone)){
+    if(count($emailList) === 0 || empty($fullanme) || empty($phone) || $spam !== '1'){
         $result = false;
     }else{
+        $request_type = null;
+
+        switch ($type){
+            case 'request': $request_type = ' - запись на приём';break;
+            case 'question': $request_type = ' - хочет задать вопрос';break;
+        }
+
         $result = Email::send(
             $emailList,
-            'Новая заявка',
-            "Поступила новая заявка от $fullanme ($phone)"
+            'Клиент '.$request_type.' от '.date('d.m.Y H:i'),
+            "Поступила новая заявка от $fullanme, тел.:$phone".$request_type
         );
     }
 

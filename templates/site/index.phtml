@@ -2,126 +2,148 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?=$title?> | МЕДИКА</title>
-
+    <title><?= $title ?> | МЕДИКА</title>
+    <link href="/data/public/site/favicon.ico" rel="shortcut icon"/>
     <script src="/data/public/site/jquery.min.js"></script>
     <script src="/data/public/site/popper.min.js"></script>
     <script src="/data/public/site/bootstrap.min.js"></script>
-    <link href="/data/public/site/bootstrap.min.css" type="text/css" rel="stylesheet" />
-    <link href="/data/public/site/styles.css" type="text/css" rel="stylesheet" />
-    <link href="/data/public/site/animate.min.css" type="text/css" rel="stylesheet" />
+    <link href="/data/public/site/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <link href="/data/public/site/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="/data/public/site/animate.min.css" type="text/css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Наша клиника специализируется на лечении неврологических болезней. В своей деятельности мы используем те методики лечения, которые позволяют лечить хроническую боль."/>
+    <meta name="keywords" content="МЕДИКА medica лечение неврология тольятти центр суставы спина услуги">
 </head>
 <body>
-    <?=$header?>
-    <?php
-        if(count($sliders) > 0) {
-            ?>
-
-            <div id="carouselSlideMedika" class="carousel slide">
-                <ol class="carousel-indicators">
-                    <?php
-                        foreach ($sliders as $index=>$it) {
-                            echo "<li data-target='#carouselSlideMedika' data-slide-to='${index}' class='".($index === 0 ? 'active' : '')."'></li>";
-                        }
-                    ?>
-                </ol>
-
-                <div class="carousel-inner">
-
-                    <?php
-                        foreach ($sliders as $index=>$it) {
-                            $itemClass = $index === 0 ? 'carousel-item active' : 'carousel-item';
-                            ?>
-                                <div class="<?=$itemClass?>">
-                                    <img class="d-block w-100" src="<?=$it['image']?>" alt="<?=$it['title']?>">
-
-                                    <div class="slider__cont-text">
-                                        <h3 class="slider__title">
-                                            <?=$it['title']?>
-                                        </h3>
-                                        <?php
-                                            if(!empty($it['text'])){
-                                                echo "<div class='slider__content-text'>${it['text']}</div>";
-                                            }
-                                        ?>
-                                        <?php
-                                            if(!empty($it['href'])){
-                                                echo "<a class='btn btn--red' href='${it['href']}'>Перейти</a>";
-                                            }
-                                        ?>
-                                    </div>
-                                </div>
-                            <?php
-                        }
-                    ?>
-                    <a class="carousel-control-prev" href="#carouselSlideMedika" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselSlideMedika" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-
-
-                </div>
-
-            </div>
-
-
-
-            <?php
-        }
+<?= $header ?>
+<?php
+if (count($sliders) > 0) {
     ?>
 
-    <section class="reviews section-field">
-        <div class="section-title">Отзывы о нас!</div>
-        <div class="section-line"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="reviews__answer">
-                        <div class="reviews__ava-views">
-                            <img src="/data/public/site/image/man1.png" class="reviews__ava" alt="Аватарка"/>
-                        </div>
-                        <div class="reviews__text">
-                            аывпва вап вап вап вап вап вап вап вап вап ва вап ва пва пвап ва вап вап вап вап вап вап вап вап
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="reviews__answer reviews__answer--right-photo">
-                        <div class="reviews__text">
-                            аывпва вап вап вап вап вап вап вап вап вап ва вап ва пва пвап ва вап вап вап вап вап вап вап вап
+    <div id="carouselSlideMedika" class="carousel slide">
+        <ol class="carousel-indicators">
+            <?php
+            foreach ($sliders as $index => $it) {
+                echo "<li data-target='#carouselSlideMedika' data-slide-to='${index}' class='" . ($index === 0 ? 'active' : '') . "'></li>";
+            }
+            ?>
+        </ol>
 
-                        </div>
-                        <div class="reviews__ava-views">
-                            <img src="/data/public/site/image/man2.png" class="reviews__ava" alt="Аватарка"/>
-                        </div>
+        <div class="carousel-inner">
+
+            <?php
+            foreach ($sliders as $index => $it) {
+                $itemClass = $index === 0 ? 'carousel-item active' : 'carousel-item';
+                ?>
+                <div class="<?= $itemClass ?>">
+                    <div class="d-block w-100 slider__image" style="background-image: url(<?=$it['image'] ?>)" title="<?=$it['title'] ?>"></div>
+
+                    <div class="slider__cont-text">
+                        <h1 class="slider__title">
+                            <?= $it['title'] ?>
+                        </h1>
+                        <?php
+                        if (!empty($it['text'])) {
+                            echo "<div class='slider__content-text'>${it['text']}</div>";
+                        }
+                        ?>
+                        <?php
+                        if (!empty($it['href'])) {
+                            echo "<a class='btn btn--red' href='${it['href']}'>Перейти</a>";
+                        }
+                        ?>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="reviews__answer">
-                        <div class="reviews__ava-views">
-                            <img src="/data/public/site/image/man3.png" class="reviews__ava" alt="Аватарка"/>
-                        </div>
-                        <div class="reviews__text">
-                            аывпва вап вап вап вап вап вап вап вап вап ва вап ва пва пвап ва вап вап вап вап вап вап вап вап
-                        </div>
+                <?php
+            }
+            ?>
+            <a class="carousel-control-prev" href="#carouselSlideMedika" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselSlideMedika" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+    <?php
+}
+?>
+
+<section class="reviews section-field">
+    <div class="section-title">Отзывы о нас!</div>
+    <div class="section-line"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="reviews__answer">
+                    <div class="reviews__ava-views">
+                        <img src="/data/public/site/image/man1.png" class="reviews__ava" alt="Аватарка"/>
+                    </div>
+                    <div class="reviews__text">
+                        <b>Иванов В.А.</b>
+                        <p>
+                            Метод ВТЭС в медгородке г.Тольятти мне очень помог.
+                            Пол-года ходил по врачам, мучили боли в спине, онемение в ноге, не чувствовал пальцев левой
+                            ноги.
+                            После нескольких процедур ВТЭС ушли все боли в спине,а в последствие прошло онемение пальцев
+                            ног.
+                            Буду обращаться только к этому лечению.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <div class="arrow-down">
-
+        <div class="row">
+            <div class="col">
+                <div class="reviews__answer reviews__answer--right-photo">
+                    <div class="reviews__text">
+                        <b>Ворошунина А.П.</b>
+                        <p>
+                            Наконец то я нашла лечение,которое мне помогло избавиться от постоянных головных болей,это метод ВТЭС.
+                            После первой же процедуры почувствовала облегчение.
+                            До этого несколько лет жила на препаратах,без которых не могла обходиться.
+                            А теперь я спокойно сплю и обхожусь без таблеток.
+                            Не верится,что такое возможно!
+                        </p>
+                    </div>
+                    <div class="reviews__ava-views">
+                        <img src="/data/public/site/image/man2.png" class="reviews__ava" alt="Аватарка"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="reviews__answer">
+                    <div class="reviews__ava-views">
+                        <img src="/data/public/site/image/man3.png" class="reviews__ava" alt="Аватарка"/>
+                    </div>
+                    <div class="reviews__text">
+                        <b>Яковлев И.П.</b>
+                        <p>
+                            Мне понравилось лечиться методом внутритканевой стимуляции в медгородке Автозаводского района г.Тольятти.
+                            Когда я обратился,меня бесплатно проконсультировал нейрохирург,поставил правильный диагноз.
+                            До этого у меня сильно болело колено.
+                            Процедура очень помогла,сейчас я нормально хожу.
+                            А до этого, что только не пробовал,столько денег истратил.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <?=$footer?>
+</section>
+<div class="arrow-down">
+
+</div>
+<?= $footer ?>
 
 
 </body>
