@@ -7,6 +7,7 @@
                 src="<?=!isset($data['preview_image']) && empty($data['preview_image']) ? '/src/adminPanel/no_image.png' : $data['preview_image']?>"
             />
         </label>
+        <a href="javascript:void(0)" onClick="$('[type=hidden]', $(this).parent()).val('')">Удалить файл</a>
         <div class="custom-file">
             <input type="file" class="custom-file-input" id="postPreviewImage" accept="image/*" data-folder="posts" />
             <input type="hidden" name="preview_image" value="<?=$data['preview_image']?>"/>

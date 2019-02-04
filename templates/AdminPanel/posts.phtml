@@ -49,22 +49,6 @@
     </tbody>
 </table>
 
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-        <?php
-            //всего страниц
-            $countPages = ceil($countPosts / 5);
-            for($i = 0; $i < $countPages;$i++){
-                $numberPage = $i+1;
-                if($currentPage !== $numberPage)
-                    echo "<li class='page-item'><a class='page-link' href='?page=$numberPage'>$numberPage</a></li>";
-                else
-                    echo "<li class='page-item active'><a class='page-link' href='#'>$numberPage</a></li>";
-            }
-        ?>
-    </ul>
-</nav>
-
 <script>
     var $body = $('body');
 

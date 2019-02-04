@@ -11,7 +11,9 @@
         foreach ($staff as $it) {
             ?>
             <div class="media" style="margin-bottom: 1em">
-                <img src="<?=$it['photo']?>" class="mr-3" alt="photo" height="300">
+                <?php if($it['photo']) { ?>
+                    <img src="<?=$it['photo']?>" class="mr-3" alt="photo" height="300">
+                <?php } ?>
                 <div class="media-body">
                     <h5 class="mt-0"><?=$it['fullname']?></h5>
                     <?=$it['about']?>

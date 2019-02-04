@@ -17,7 +17,7 @@ class PageActions
         'diseases'    => ['href' => "/diseases/", 'label' => 'Что мы лечим', 'active' => false],
         'treatment' => ['href' => "/treatment/", 'label' => 'Методы лечения', 'active' => false],
         'staff'    => ['href' => "/staff/", 'label' => 'Врачи', 'active' => false],
-        'posts'    => ['href' => "/posts/", 'label' => 'Статьи', 'active' => false],
+        'posts'    => ['href' => "/posts/", 'label' => 'Пациентам', 'active' => false],
         'prices'   => ['href' => "/prices/", 'label' => 'Цены', 'active' => false],
         'contacts'   => ['href' => "/contacts/", 'label' => 'Контакты', 'active' => false],
     ];
