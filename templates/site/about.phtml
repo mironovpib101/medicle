@@ -13,9 +13,75 @@
     <link href="/data/public/site/favicon.ico" rel="shortcut icon"/>
     <meta name="description" content="Наша клиника специализируется на лечении неврологических болезней. В своей деятельности мы используем те методики лечения, которые позволяют лечить хроническую боль."/>
     <meta name="keywords" content="МЕДИКА medica лечение неврология тольятти центр суставы спина услуги">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 </head>
 <body>
 <?= $header ?>
+
+<?php
+if (count($sliders) > 0) {
+    ?>
+
+    <div id="carouselSlideMedika" class="carousel slide">
+        <ol class="carousel-indicators">
+            <?php
+            foreach ($sliders as $index => $it) {
+                echo "<li data-target='#carouselSlideMedika' data-slide-to='${index}' class='" . ($index === 0 ? 'active' : '') . "'></li>";
+            }
+            ?>
+        </ol>
+
+        <div class="carousel-inner">
+            <?php
+            foreach ($sliders as $index => $it) {
+                $itemClass = $index === 0 ? 'carousel-item active' : 'carousel-item';
+
+                ?>
+                <div class="<?= $itemClass ?>">
+                    <div class="d-block w-100 slider__image" style="background-image: url(<?=$it['image'] ?>)" title="<?=$it['title'] ?>"></div>
+                    <?php
+                    if(!empty($it['title']) || !empty($it['title']) || !empty($it['title'])){
+                        ?>
+                        <div class="slider__cont-text">
+                            <h1 class="slider__title">
+                                <?= $it['title'] ?>
+                            </h1>
+                            <?php
+                            if (!empty($it['text'])) {
+                                echo "<div class='slider__content-text'>${it['text']}</div>";
+                            }
+                            ?>
+                            <?php
+                            if (!empty($it['href'])) {
+                                echo "<a class='btn btn--red' href='${it['href']}'>Перейти</a>";
+                            }
+                            ?>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <?php
+            }
+            ?>
+            <a class="carousel-control-prev" href="#carouselSlideMedika" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselSlideMedika" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+    <?php
+}
+?>
 
 <section class="content section-field">
     <h1 class="section-title">

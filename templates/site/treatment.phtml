@@ -13,6 +13,7 @@
     <link href="/data/public/site/favicon.ico" rel="shortcut icon"/>
     <meta name="description" content="Наша клиника специализируется на лечении неврологических болезней. В своей деятельности мы используем те методики лечения, которые позволяют лечить хроническую боль."/>
     <meta name="keywords" content="МЕДИКА medica лечение неврология тольятти центр суставы спина">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 </head>
 <body>
 <?=$header?>
@@ -22,8 +23,6 @@
         <div class="container treatment-list">
             <?php
                 foreach ($methods as $i => $method) {
-//                    echo '<div>'.($i + 1)." <a href='/treatment/$method[id]/'>$method[title]</a></div>";
-
                     ?>
                         <a class="treatment-list__item" href="/treatment/<?=$method['id']?>/">
                             <div

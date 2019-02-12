@@ -67,6 +67,7 @@ class PageActions
                 $table = $model->getTable();
                 $view->assign('sliders', $model->getAll("SELECT * FROM ${table} WHERE status = '1'"));
                 $view->assign('methods', (new MethodsModel())->getAll());
+                $view->assign('pains', (new PainModel())->getAll());
                 break;
             case 'staff':
                 $view->assign('staff', (new StaffModel())->getAll());
@@ -81,6 +82,9 @@ class PageActions
                 $view->assign('pains', (new PainModel())->getAll());
                 break;
             case 'about':
+                $model = new SliderModel();
+                $table = $model->getTable();
+                $view->assign('sliders', $model->getAll("SELECT * FROM ${table} WHERE status = '1'"));
                 $items = (new LicensesModel())->getAll();
                 foreach ($items as &$item){
                     $patch = explode('/', $item['scan']);

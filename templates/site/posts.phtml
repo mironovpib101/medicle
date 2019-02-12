@@ -13,6 +13,7 @@
     <link href="/data/public/site/favicon.ico" rel="shortcut icon"/>
     <meta name="description" content="Наша клиника специализируется на лечении неврологических болезней. В своей деятельности мы используем те методики лечения, которые позволяют лечить хроническую боль."/>
     <meta name="keywords" content="МЕДИКА medica лечение неврология тольятти центр суставы спина услуги">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 </head>
 <body>
 <?=$header?>
@@ -25,10 +26,10 @@
                 <div class="articles-list">
                     <div class="row">
                         <ul>
-                        <?php foreach ($posts as $i => $item) {?>
+                        <?php foreach ($posts as $item) {?>
                           <li>
                               <div class="articles-list__title">
-                                 <?=$i + 1?>. <a href="#post:<?=$item['id']?>"><?=$item['title']?></a>
+                                 <a href="#post:<?=$item['id']?>"><?=$item['title']?></a>
                               </div>
                           </li>
                         <?php } ?>
@@ -46,7 +47,7 @@
                                 </div>
                                 <div class="col-9 text">
                                     <div class="articles-list__title">
-                                        <h2><?=$i + 1?>. <?=$item['title']?></h2>
+                                        <h2><?=$item['title']?></h2>
                                     </div>
                                     <div class="articles-list__text">
                                         <?=$item['preview_text']?>
@@ -55,7 +56,7 @@
                             <?php }else{ ?>
                                 <div class="col-12 text">
                                     <div class="articles-list__title">
-                                        <h2><?=$i + 1?>. <?=$item['title']?></h2>
+                                        <h2><?=$item['title']?></h2>
                                     </div>
                                     <div class="articles-list__text">
                                         <?=$item['preview_text']?>

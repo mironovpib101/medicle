@@ -13,25 +13,23 @@
     <link href="/data/public/site/favicon.ico" rel="shortcut icon"/>
     <meta name="description" content="Наша клиника специализируется на лечении неврологических болезней. В своей деятельности мы используем те методики лечения, которые позволяют лечить хроническую боль."/>
     <meta name="keywords" content="МЕДИКА medica лечение неврология тольятти центр суставы спина услуги">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 </head>
 <body>
 <?=$header?>
-<section class="content">
+<section class="content" style="padding-top: 60px">
     <h1 class="content__title">Что мы лечим</h1>
     <div class="content__line"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div id="skeleton">
-                        <?php
-                            foreach ($pains as $pain){
-                                echo "<a href='/pain/$pain[id]/' style='top: $pain[top]px;left: $pain[left]px' id='disease:$pain[id]'>$pain[title]</a>";
-                            }
-                        ?>
-                    </div>
-                </div>
-            </div>
+    <div class="skeleton">
+        <div class="skeleton__fon"></div>
+        <div class="skeleton__image">
+            <?php
+            foreach ($pains as $pain){
+                echo "<a href='/pain/$pain[id]/' style='top: $pain[top]%;left: $pain[left]%' id='disease:$pain[id]'>$pain[title]</a>";
+            }
+            ?>
         </div>
+    </div>
 </section>
 
 

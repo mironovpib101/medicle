@@ -1,13 +1,30 @@
-#skeleton{
-    background: url(/data/public/site/image/man_opacity.jpg) no-repeat;
-    width: 800px;
+.skeleton{
+    width: 100%;
     height: 800px;
     margin: 0 auto;
     position: relative;
     overflow: hidden;
 
     a {
-        padding: 0px 3px;
+        padding: 0 3px;
+        max-width: 182px;
+    }
+
+    &__image{
+        background: url(/data/public/site/image/man_opacity.jpg) no-repeat center;
+        background-size: contain;
+        height: 800px;
+        width: 800px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    &__fon{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg,#144ed3,#000e2f);
+        z-index: -1;
     }
 }
 .section-pain {
