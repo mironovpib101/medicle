@@ -30,29 +30,34 @@ if (count($sliders) > 0) {
         </ol>
 
         <div class="carousel-inner">
-
             <?php
             foreach ($sliders as $index => $it) {
                 $itemClass = $index === 0 ? 'carousel-item active' : 'carousel-item';
+
                 ?>
                 <div class="<?= $itemClass ?>">
                     <div class="d-block w-100 slider__image" style="background-image: url(<?=$it['image'] ?>)" title="<?=$it['title'] ?>"></div>
-
-                    <div class="slider__cont-text">
-                        <h1 class="slider__title">
-                            <?= $it['title'] ?>
-                        </h1>
-                        <?php
-                        if (!empty($it['text'])) {
-                            echo "<div class='slider__content-text'>${it['text']}</div>";
+                    <?php
+                        if(!empty($it['title']) || !empty($it['title']) || !empty($it['title'])){
+                            ?>
+                                <div class="slider__cont-text">
+                                    <h1 class="slider__title">
+                                        <?= $it['title'] ?>
+                                    </h1>
+                                    <?php
+                                    if (!empty($it['text'])) {
+                                        echo "<div class='slider__content-text'>${it['text']}</div>";
+                                    }
+                                    ?>
+                                    <?php
+                                    if (!empty($it['href'])) {
+                                        echo "<a class='btn btn--red' href='${it['href']}'>Перейти</a>";
+                                    }
+                                    ?>
+                                </div>
+                            <?php
                         }
-                        ?>
-                        <?php
-                        if (!empty($it['href'])) {
-                            echo "<a class='btn btn--red' href='${it['href']}'>Перейти</a>";
-                        }
-                        ?>
-                    </div>
+                    ?>
                 </div>
                 <?php
             }
@@ -77,66 +82,23 @@ if (count($sliders) > 0) {
 ?>
 
 <section class="reviews section-field">
-    <div class="section-title">Отзывы о нас!</div>
+    <div class="section-title">Что мы лечим</div>
     <div class="section-line"></div>
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="reviews__answer">
-                    <div class="reviews__ava-views">
-                        <img src="/data/public/site/image/man1.png" class="reviews__ava" alt="Аватарка"/>
-                    </div>
-                    <div class="reviews__text">
-                        <b>Иванов В.А.</b>
-                        <p>
-                            Метод ВТЭС в медгородке г.Тольятти мне очень помог.
-                            Пол-года ходил по врачам, мучили боли в спине, онемение в ноге, не чувствовал пальцев левой
-                            ноги.
-                            После нескольких процедур ВТЭС ушли все боли в спине,а в последствие прошло онемение пальцев
-                            ног.
-                            Буду обращаться только к этому лечению.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="reviews__answer reviews__answer--right-photo">
-                    <div class="reviews__text">
-                        <b>Ворошунина А.П.</b>
-                        <p>
-                            Наконец то я нашла лечение,которое мне помогло избавиться от постоянных головных болей,это метод ВТЭС.
-                            После первой же процедуры почувствовала облегчение.
-                            До этого несколько лет жила на препаратах,без которых не могла обходиться.
-                            А теперь я спокойно сплю и обхожусь без таблеток.
-                            Не верится,что такое возможно!
-                        </p>
-                    </div>
-                    <div class="reviews__ava-views">
-                        <img src="/data/public/site/image/man2.png" class="reviews__ava" alt="Аватарка"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="reviews__answer">
-                    <div class="reviews__ava-views">
-                        <img src="/data/public/site/image/man3.png" class="reviews__ava" alt="Аватарка"/>
-                    </div>
-                    <div class="reviews__text">
-                        <b>Яковлев И.П.</b>
-                        <p>
-                            Мне понравилось лечиться методом внутритканевой стимуляции в медгородке Автозаводского района г.Тольятти.
-                            Когда я обратился,меня бесплатно проконсультировал нейрохирург,поставил правильный диагноз.
-                            До этого у меня сильно болело колено.
-                            Процедура очень помогла,сейчас я нормально хожу.
-                            А до этого, что только не пробовал,столько денег истратил.
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <div class="container treatment-list">
+            <?php
+            foreach ($methods as $i => $method) {
+                ?>
+                <a class="treatment-list__item" href="/treatment/<?=$method['id']?>/">
+                    <div
+                            class="treatment-list__preview"
+                            style="background-image: url('<?=empty($method["preview_image"]) ? '/src/adminPanel/no_image.png' : $method["preview_image"]?>')"
+                    ></div>
+                    <h3 class="treatment-list__title"><?=$method['title']?></h3>
+                </a>
+                <?php
+            }
+            ?>
         </div>
     </div>
 </section>

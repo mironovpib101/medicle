@@ -47,6 +47,18 @@
     background: @color-white;
     height: 90px;
 
+    .dropdown-menu{
+        position: absolute;
+        top: 100%;
+        left: 0;
+
+        a{
+            display: block;
+            line-height: normal;
+            padding: 1em;
+        }
+    }
+    
     &__item a {
         color: @color-black;
         text-decoration: none !important;
@@ -64,10 +76,15 @@
 
     &__item {
         line-height: 90px;
-        padding: 0px;
-        margin: 0px 10px;
+        padding: 0;
+        margin: 0 10px;
         font-weight: bold;
         text-transform: uppercase;
+        position: relative;
+        
+        &:hover .dropdown-menu{
+            display: block;
+        }
     }
     &__item--active  {
         border-bottom: 1px solid #91281e;
@@ -76,7 +93,6 @@
             color: @color-red;
         }
     }
-
 }
 
 

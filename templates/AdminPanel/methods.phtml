@@ -15,6 +15,7 @@
     <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Картинка</th>
             <th scope="col">Название</th>
             <th scope="col">Опции</th>
         </tr>
@@ -23,6 +24,13 @@
         <?php foreach ($methods as $method) {?>
             <tr>
                 <td><?=$method['id']?></td>
+                <td>
+                    <img
+                        width="100"
+                        alt="image:<?=$method['id']?>"
+                        src="<?=empty($method['preview_image']) ? '/src/adminPanel/no_image.png' : $method['preview_image']?>"
+                    />
+                </td>
                 <td><?=$method['title']?></td>
                 <td>
                     <div class="btn-group btn-group-sm" role="group">

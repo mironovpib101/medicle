@@ -1,7 +1,25 @@
 <ul class='nav justify-content-end navigation_menu'>
 <?php
     foreach ($pages as $page) {
-        echo "<li class='nav-link head__item".($page['active'] ? ' head__item--active' : '')."'><a href='$page[href]'>$page[label]</a></li>";
+        $class = $page['active'] ? 'head__item--active' : '';
+        ?>
+        <li class="nav-link head__item <?=$class?>">
+            <a href="<?=$page['href']?>"><?=$page['label']?></a>
+
+
+            <?php
+                if(is_array($page['child']) && count($page['child']) > 0) {
+                    echo '<div class="dropdown-menu">';
+                    foreach ($page['child'] as $child) {
+                        ?>
+                            <a class="dropdown-item" href="<?=$child['href']?>"><?=$child['label']?></a>
+                        <?php
+                    }
+                    echo '</div>';
+                }
+            ?>
+        </li>
+        <?php
     }
 ?>
 </ul>

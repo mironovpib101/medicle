@@ -64,7 +64,7 @@
 }
 .articles-page {
     nav {
-        margin: 20px auto 0px;
+        margin: 20px auto 0;
     }
 }
 
@@ -77,6 +77,36 @@
     }
 }
 .treatment-list {
-    font-size: 20px;
-    line-height: 25px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    &__item {
+        display: block;
+        width: 220px;
+        margin: 2px;
+        text-decoration: none!important;
+        overflow: hidden;
+        background: #fff;
+        border: 1px solid #fff;
+
+        &:hover{
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0, .2)
+        }
+    }
+
+    &__preview {
+        height: 238px;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    &__title{
+        text-align: center;
+        padding: 1em 0;
+    }
 }

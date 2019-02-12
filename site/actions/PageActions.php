@@ -15,7 +15,12 @@ class PageActions
     protected $pages = [
         'about'   => ['href' => "/about/", 'label' => 'О центре', 'active' => false],
         'diseases'    => ['href' => "/diseases/", 'label' => 'Что мы лечим', 'active' => false],
-        'treatment' => ['href' => "/treatment/", 'label' => 'Методы лечения', 'active' => false],
+        'treatment' => [
+            'href' => '/treatment/',
+            'label' => 'Методы лечения',
+            'active' => false,
+            'child' => []
+        ],
         'staff'    => ['href' => "/staff/", 'label' => 'Врачи', 'active' => false],
         'posts'    => ['href' => "/posts/", 'label' => 'Пациентам', 'active' => false],
         'prices'   => ['href' => "/prices/", 'label' => 'Цены', 'active' => false],
@@ -31,6 +36,18 @@ class PageActions
     private function getMenu(String $currentPage = null): String
     {
         $view = new View();
+
+        $pages = (new MethodsModel)->getAll();
+        foreach ($pages as &$page){
+            $page = [
+                'label' => $page['title'],
+                'href' => "/treatment/$page[id]/",
+            ];
+        }
+
+
+        $this->pages['treatment']['child'] = $pages;
+
         if($this->pages[$currentPage]) $this->pages[$currentPage]['active'] = true;
         $view->assign('pages', $this->pages);
         return $view->render('/site/components/menu.phtml');
@@ -49,6 +66,7 @@ class PageActions
                 $model = new SliderModel();
                 $table = $model->getTable();
                 $view->assign('sliders', $model->getAll("SELECT * FROM ${table} WHERE status = '1'"));
+                $view->assign('methods', (new MethodsModel())->getAll());
                 break;
             case 'staff':
                 $view->assign('staff', (new StaffModel())->getAll());

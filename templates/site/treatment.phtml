@@ -22,7 +22,17 @@
         <div class="container treatment-list">
             <?php
                 foreach ($methods as $i => $method) {
-                    echo '<div>'.($i + 1)." <a href='/treatment/$method[id]/'>$method[title]</a></div>";
+//                    echo '<div>'.($i + 1)." <a href='/treatment/$method[id]/'>$method[title]</a></div>";
+
+                    ?>
+                        <a class="treatment-list__item" href="/treatment/<?=$method['id']?>/">
+                            <div
+                                    class="treatment-list__preview"
+                                    style="background-image: url('<?=empty($method["preview_image"]) ? '/src/adminPanel/no_image.png' : $method["preview_image"]?>')"
+                            ></div>
+                            <h3 class="treatment-list__title"><?=$method['title']?></h3>
+                        </a>
+                    <?php
                 }
             ?>
         </div>
