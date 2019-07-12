@@ -18,6 +18,7 @@ require_once 'site/models/PricesModel.php';
 require_once 'site/models/EmailsModel.php';
 require_once 'site/models/PainModel.php';
 require_once 'site/models/MethodsModel.php';
+require_once 'site/models/ReviewModel.php';
 //подключим экшены
 require_once 'site/actions/PageActions.php';
 require_once 'site/actions/AdminActions.php';

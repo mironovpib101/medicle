@@ -1,0 +1,27 @@
+<div class="col-12 text">
+    <div class="articles-list__title animated fadeInLeft" style="opacity: 1;">
+        <h2>Отзывы о нас!</h2>
+    </div>
+    <div class="articles-list__text animated fadeInRight" style="opacity: 1;">
+        <div class="container">
+            <?php foreach ($reviews as $index => $review) { ?>
+                <div class="row">
+                    <div class="col">
+                        <div class="reviews__answer animated <?= ($index % 2 ? 'fadeInRight' : 'fadeInLeft') ?>"
+                             style="opacity: 1;">
+                            <div class="reviews__ava-views">
+                                <img src="<?=$review['avatar']?>" class="reviews__ava" alt="Аватарка">
+                            </div>
+                            <div class="reviews__text">
+                                <b><?=$review['user_name']?></b>
+                                <p>
+                                    <?=$review['text']?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</div>

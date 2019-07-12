@@ -1,5 +1,5 @@
 <ul class='nav justify-content-end navigation_menu'>
-<?php
+    <?php
     foreach ($pages as $page) {
         $class = $page['active'] ? 'head__item--active' : '';
         ?>
@@ -8,30 +8,30 @@
 
 
             <?php
-                if(is_array($page['child']) && count($page['child']) > 0) {
-                    echo '<div class="dropdown-menu">';
-                    foreach ($page['child'] as $child) {
-                        ?>
-                            <a class="dropdown-item" href="<?=$child['href']?>"><?=$child['label']?></a>
-                        <?php
-                    }
-                    echo '</div>';
+            if(isset($page['child']) && is_array($page['child']) && count($page['child']) > 0) {
+                echo '<div class="dropdown-menu">';
+                foreach ($page['child'] as $child) {
+                    ?>
+                    <a class="dropdown-item" href="<?=$child['href']?>"><?=$child['label']?></a>
+                    <?php
                 }
+                echo '</div>';
+            }
             ?>
         </li>
         <?php
     }
-?>
+    ?>
 </ul>
 <div class='btn-group head__menu-smart'>
-     <button type='button' class='btn btn-danger dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-          Меню
-     </button>
-     <div class='dropdown-menu'>
+    <button type='button' class='btn btn-danger dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+        Меню
+    </button>
+    <div class='dropdown-menu'>
         <?php
-            foreach ($pages as $page) {
-               echo "<a class='dropdown-item".($page['active'] ? ' active-page' : '')."' href='$page[href]'>$page[label]</a>";
-            }
+        foreach ($pages as $page) {
+            echo "<a class='dropdown-item".($page['active'] ? ' active-page' : '')."' href='$page[href]'>$page[label]</a>";
+        }
         ?>
     </div>
 </div>

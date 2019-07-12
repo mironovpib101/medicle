@@ -25,6 +25,7 @@ class AdminActions
     protected $pricesModel;
     protected $licensesModel;
     protected $painModel;
+    protected $reviewModel;
     protected $methodsModel;
     protected $response;
     protected $view;
@@ -46,12 +47,13 @@ class AdminActions
         $this->pricesModel = new PricesModel();
         $this->painModel = new PainModel();
         $this->methodsModel = new MethodsModel();
+        $this->reviewModel = new ReviewModel();
         //ответ системы
         $this->response = new Response();
         //шаблоны
         $this->view = new View();
 
-        if(!$this->isUser())
+        if (!$this->isUser())
             throw new ExceptionApp('You don\'t have access', 403);
     }
 
@@ -63,8 +65,8 @@ class AdminActions
      */
     public function removeElement(String $table, int $id): bool
     {
-        if(empty($table) || empty($id)) return false;
-        return $this->anyModel->setTable($table)->delete(['id'=>$id]);
+        if (empty($table) || empty($id)) return false;
+        return $this->anyModel->setTable($table)->delete(['id' => $id]);
     }
 
     /**
@@ -76,8 +78,8 @@ class AdminActions
      */
     public function updateElement(String $table, int $id, array $data): bool
     {
-        if(empty($table) || empty($id)) return false;
-        return $this->anyModel->setTable($table)->update($data, ['id'=>$id]);
+        if (empty($table) || empty($id)) return false;
+        return $this->anyModel->setTable($table)->update($data, ['id' => $id]);
     }
 
     /**
@@ -88,10 +90,10 @@ class AdminActions
      */
     public function insertElement(String $table, array $data): array
     {
-        if(!$this->isUser()) return ['access' => 'Недостаточно прав'];
-        if(empty($table)) return ['table' => 'Таблица не указана'];
+        if (!$this->isUser()) return ['access' => 'Недостаточно прав'];
+        if (empty($table)) return ['table' => 'Таблица не указана'];
 
-        switch ($table){
+        switch ($table) {
             case 'posts':
                 $data['user_id'] = $this->user['id'];
                 return $this->postsModel->setItem($data);
@@ -109,7 +111,10 @@ class AdminActions
                 return $this->painModel->setItem($data);
             case 'methods':
                 return $this->methodsModel->setItem($data);
-            default: return ['table' => 'Таблица не найдена'];
+            case 'reviews':
+                return $this->reviewModel->setItem($data);
+            default:
+                return ['table' => 'Таблица не найдена'];
         }
     }
 
@@ -123,8 +128,8 @@ class AdminActions
     public function getForm(String $table, int $id = null): String
     {
         $data = [];
-        if(!empty($id)){
-            $data = $this->anyModel->setTable($table)->getRow(['id'=>$id]);
+        if (!empty($id)) {
+            $data = $this->anyModel->setTable($table)->getRow(['id' => $id]);
         }
         $this->view->assign('data', $data);
         return $this->view->render("/AdminPanel/forms/$table.phtml") ?? '';
@@ -140,14 +145,33 @@ class AdminActions
         try {
             $content = 'Добро пожаловать!';
             switch ($page) {
-                case 'posts': $content = $this->getPosts();break;
-                case 'licenses': $content = $this->getLicenses();break;
-                case 'staff': $content = $this->getStaff();break;
-                case 'slider': $content = $this->getSlides();break;
-                case 'emails': $content = $this->getEmails();break;
-                case 'prices': $content = $this->getPrices();break;
-                case 'pain': $content = $this->getPain();break;
-                case 'methods': $content = $this->getMethods();break;
+                case 'posts':
+                    $content = $this->getPosts();
+                    break;
+                case 'licenses':
+                    $content = $this->getLicenses();
+                    break;
+                case 'staff':
+                    $content = $this->getStaff();
+                    break;
+                case 'slider':
+                    $content = $this->getSlides();
+                    break;
+                case 'emails':
+                    $content = $this->getEmails();
+                    break;
+                case 'prices':
+                    $content = $this->getPrices();
+                    break;
+                case 'pain':
+                    $content = $this->getPain();
+                    break;
+                case 'methods':
+                    $content = $this->getMethods();
+                    break;
+                case 'reviews':
+                    $content = $this->getReviews();
+                    break;
             }
             $this->view->assign('title', $this->title);
             $this->view->assign('menu', $this->getMenu($page));
@@ -174,8 +198,11 @@ class AdminActions
             'prices' => ['href' => "/admin/prices/", 'label' => 'Прайс', 'active' => false],
             'pain' => ['href' => "/admin/pain/", 'label' => 'Боль', 'active' => false],
             'methods' => ['href' => "/admin/methods/", 'label' => 'Методы лечения', 'active' => false],
+            'reviews' => ['href' => "/admin/reviews/", 'label' => 'Отзывы', 'active' => false],
         ];
-        if($pages[$currentPage]) $pages[$currentPage]['active'] = true;
+
+        if ($currentPage && isset($pages[$currentPage]) && $pages[$currentPage])
+            $pages[$currentPage]['active'] = true;
         $this->view->assign('pages', $pages);
         return $this->view->render('/AdminPanel/menu.phtml');
     }
@@ -189,7 +216,7 @@ class AdminActions
     {
         $this->view->assign('posts', $this->postsModel->getAll());
         $this->view->assign('currentPage', intval(Request::get('page', 1)));
-        $this->view->assign('countPosts',$this->postsModel->count(
+        $this->view->assign('countPosts', $this->postsModel->count(
             $this->isUser() ? null : ['status' => 1]
         ));
         return $this->view->render('/AdminPanel/posts.phtml');
@@ -226,6 +253,17 @@ class AdminActions
     {
         $this->view->assign('slides', $this->sliderModel->getAll());
         return $this->view->render('/AdminPanel/slider.phtml');
+    }
+
+    /**
+     * Получим отзывы
+     * @return string
+     * @throws \Xore\ExceptionApp
+     */
+    private function getReviews(): string
+    {
+        $this->view->assign('reviews', $this->reviewModel->getAll());
+        return $this->view->render('/AdminPanel/reviews.phtml');
     }
 
     /**
@@ -278,9 +316,9 @@ class AdminActions
      */
     public function isUser()
     {
-        if(!empty($user)){
+        if (!empty($user)) {
             return !empty($this->user);
-        }else{
+        } else {
             $this->user = $this->userModel->getRow([
                 'token' => Request::cookie('token')
             ]);

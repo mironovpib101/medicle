@@ -48,8 +48,10 @@ class PageActions
 
         $this->pages['treatment']['child'] = $pages;
 
-        if($this->pages[$currentPage]) $this->pages[$currentPage]['active'] = true;
+        if($currentPage && $this->pages[$currentPage])
+            $this->pages[$currentPage]['active'] = true;
         $view->assign('pages', $this->pages);
+
         return $view->render('/site/components/menu.phtml');
     }
 
@@ -96,6 +98,8 @@ class PageActions
             case 'posts':
                 $model = new PostsModel();
                 $view->assign('posts', $model->getPublic());
+                $view->assign('reviews', (new ReviewModel)->getPublic());
+                $view->assign('reviews', $view->render("/site/components/reviews.phtml", false));
                 $view->assign('countPosts',$model->count(['status' => 1]));
                 $view->assign('currentPage', intval(Request::get('page', 1)));
                 break;
@@ -164,8 +168,10 @@ class PageActions
     {
         $view = new View();
         $view->assign('menu', $this->getMenu());
+        $view->assign('form', $view->render("/site/components/form.phtml", false));
         $view->assign('header', $view->render("/site/components/header.phtml", false));
         $view->assign('footer', $view->render("/site/components/footer.phtml", false));
+
 
         return $view->render("/site/notFound.phtml", false);
     }

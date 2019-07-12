@@ -2,23 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?=$title?> | МЕДИКА</title>
+    <title><?= $title ?> | МЕДИКА</title>
     <script src="/data/public/site/jquery.min.js"></script>
     <script src="/data/public/site/popper.min.js"></script>
     <script src="/data/public/site/bootstrap.min.js"></script>
-    <link href="/data/public/site/bootstrap.min.css" type="text/css" rel="stylesheet" />
-    <link href="/data/public/site/styles.css" type="text/css" rel="stylesheet" />
-    <link href="/data/public/site/animate.min.css" type="text/css" rel="stylesheet" />
+    <link href="/data/public/site/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <link href="/data/public/site/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="/data/public/site/animate.min.css" type="text/css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/data/public/site/favicon.ico" rel="shortcut icon"/>
-    <meta name="description" content="Наша клиника специализируется на лечении неврологических болезней. В своей деятельности мы используем те методики лечения, которые позволяют лечить хроническую боль."/>
+    <meta name="description"
+          content="Наша клиника специализируется на лечении неврологических болезней. В своей деятельности мы используем те методики лечения, которые позволяют лечить хроническую боль."/>
     <meta name="keywords" content="МЕДИКА medica лечение неврология тольятти центр суставы спина услуги">
     <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 </head>
 <body>
-<?=$header?>
+<?= $header ?>
 <section class="content section-field articles-page">
     <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="section-title">Отзывы</h1>
+                <div class="section-line"></div>
+                <div class="articles-list">
+                    <div class="row">
+                        <?= $reviews ?>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12">
                 <h1 class="section-title">Пациентам</h1>
@@ -26,40 +38,41 @@
                 <div class="articles-list">
                     <div class="row">
                         <ul>
-                        <?php foreach ($posts as $item) {?>
-                          <li>
-                              <div class="articles-list__title">
-                                 <a href="#post:<?=$item['id']?>"><?=$item['title']?></a>
-                              </div>
-                          </li>
-                        <?php } ?>
+                            <?php foreach ($posts as $item) { ?>
+                                <li>
+                                    <div class="articles-list__title">
+                                        <a href="#post:<?= $item['id'] ?>"><?= $item['title'] ?></a>
+                                    </div>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
-                    <?php foreach ($posts as $i => $item) {?>
-                        <div class="row" id="post:<?=$item['id']?>">
-                            <?php if(!empty($item['preview_image'])) {?>
+                    <?php foreach ($posts as $i => $item) { ?>
+                        <div class="row" id="post:<?= $item['id'] ?>">
+                            <?php if (!empty($item['preview_image'])) { ?>
                                 <div class="col-3">
                                     <div class="articles-list__wrapper-image">
-                                        <a href="/posts/<?=$item['id']?>/">
-                                            <img src="<?=$item['preview_image']?>" class="articles-list__image" alt="Картинка новости">
+                                        <a href="/posts/<?= $item['id'] ?>/">
+                                            <img src="<?= $item['preview_image'] ?>" class="articles-list__image"
+                                                 alt="Картинка новости">
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-9 text">
                                     <div class="articles-list__title">
-                                        <h2><?=$item['title']?></h2>
+                                        <h2><?= $item['title'] ?></h2>
                                     </div>
                                     <div class="articles-list__text">
-                                        <?=$item['preview_text']?>
+                                        <?= $item['preview_text'] ?>
                                     </div>
                                 </div>
-                            <?php }else{ ?>
+                            <?php } else { ?>
                                 <div class="col-12 text">
                                     <div class="articles-list__title">
-                                        <h2><?=$item['title']?></h2>
+                                        <h2><?= $item['title'] ?></h2>
                                     </div>
                                     <div class="articles-list__text">
-                                        <?=$item['preview_text']?>
+                                        <?= $item['preview_text'] ?>
                                     </div>
                                 </div>
                             <?php } ?>
@@ -70,6 +83,6 @@
         </div>
     </div>
 </section>
-<?=$footer?>
+<?= $footer ?>
 </body>
 </html>
